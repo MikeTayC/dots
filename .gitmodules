@@ -1,0 +1,3 @@
+[submodule "drunk-zsh-history"]
+	path = drunk-zsh-history
+	url = git@github.com:MikeTayC/drunk-zsh-history.git
