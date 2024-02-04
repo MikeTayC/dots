@@ -211,4 +211,4 @@ load-nvmrc
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(rbenv init -)"
 #
-# test 2
+# test 6
