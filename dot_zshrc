@@ -210,3 +210,5 @@ load-nvmrc
 # load ruby - for gem doing it for colorls
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # eval "$(rbenv init -)"
+#
+# test 2
