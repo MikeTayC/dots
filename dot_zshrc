@@ -57,6 +57,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     before-plugins
+    zsh-nvm
     zsh-autocomplete 
     zsh-autosuggestions 
     fast-syntax-highlighting
