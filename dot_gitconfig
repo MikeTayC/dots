@@ -47,7 +47,7 @@
 	diff = true
 	status = true
     showbranch = true
-	ui = true
+	ui = auto
 
 # color.branch
 #     A boolean to enable/disable color in the output of git-branch(1). May be set to always, false (or
@@ -137,6 +137,6 @@
 #     red). The values of these variables may be specified as in color.branch.<slot>.
 
 [color "status"]
-	added = yellow
-	changed = green
+	added = green bold
+	changed = yellow bold
 	untracked = cyan
