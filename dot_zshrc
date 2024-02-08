@@ -111,7 +111,9 @@ source $ZSH/oh-my-zsh.sh
 
 # aliases - env.sh managed in my .oh-my-zsh repo
 source ~/.oh-my-zsh/env.sh
-source ~/.oh-my-zsh/zstyles.zsh
+
+# auto complete zstyles and customizations
+#source ~/.oh-my-zsh/zstyles.zsh
 
 # tabtab source for packages
 # uninstall by removing these lines
