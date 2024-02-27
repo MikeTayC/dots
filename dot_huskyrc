@@ -1,0 +1,2 @@
+# this will ensure node is loaded - required due to npm lazy loading
+source "$NVM_DIR/nvm.sh"
