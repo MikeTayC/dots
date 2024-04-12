@@ -61,10 +61,7 @@ plugins=(
     zsh-autocomplete 
     zsh-autosuggestions 
     fast-syntax-highlighting
-    brew 
-    macos
-    git-extras 
-    git gitfast 
+    gitfast 
     history
     zsh-eza
     history-sync
