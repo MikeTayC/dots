@@ -119,8 +119,4 @@ source ~/.oh-my-zsh/zstyles.zsh
 #zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 #zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
-
 #zprof
