@@ -12,7 +12,7 @@ alias g=git
 alias vi=vim
 
 # more ways to ls
-alias ll='ls -lh'
+alias ll='ls -la'
 alias la='ls -lAh'
 alias ldot='ls -ld .*'
 
