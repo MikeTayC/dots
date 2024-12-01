@@ -109,7 +109,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.oh-my-zsh/env.sh
 
 # auto complete zstyles and customizations
-source ~/.oh-my-zsh/zstyles.zsh
+#source ~/.oh-my-zsh/zstyles.zsh
 #zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
 #zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
 #zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
