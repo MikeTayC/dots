@@ -1,12 +1,9 @@
 
-# original PATH from very first oh-my-zsh set up - REWRITES PATH defined in /etc/paths
-#export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
-# Added by Toolbox App - already in PATH
-# export PATH="$PATH:/usr/local/bin"
+# original PATH from very first oh-my-zsh set up - REWRITES PATH defined in /etc/paths as we don't need the majority of those
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Mise - shim is top of path - https://mise.jdx.dev/getting-started.html#_2b-alternative-add-mise-shims-to-path
-#export PATH="$HOME/.local/share/mise/shims:$PATH"
+export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 
 {{- if contains "/opt/homebrew/bin" .chezmoi.executable }}
