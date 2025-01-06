@@ -1,10 +1,20 @@
+
 # original PATH from very first oh-my-zsh set up - REWRITES PATH defined in /etc/paths
 #export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Added by Toolbox App - already in PATH
 # export PATH="$PATH:/usr/local/bin"
 
-# Mise - shim is top of path - https://mise.jdx.dev/getting-started.html#_2b-alternative-add-mise-shims-to-path 
+# Mise - shim is top of path - https://mise.jdx.dev/getting-started.html#_2b-alternative-add-mise-shims-to-path
 #export PATH="$HOME/.local/share/mise/shims:$PATH"
 
+
+{{- if contains "/opt/homebrew/bin" .chezmoi.executable }}
+
+# this line is required on the apple silicon based machines (eg M1, M2, M3, etc),
+# where homebrew is instlled at /opt/homebrew/.
+# Intel mac homebrew lives at /urs/local/bin.
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+{{- end }}
