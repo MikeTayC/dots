@@ -1,4 +1,4 @@
-[".vim_runtime"]
-    type = "git-repo"
-    url = "https://github.com/amix/vimrc"
-    refreshPeriod = "8760h"
+#[".vim_runtime"]
+#    type = "git-repo"
+#    url = "https://github.com/amix/vimrc"
+#    refreshPeriod = "8760h"
