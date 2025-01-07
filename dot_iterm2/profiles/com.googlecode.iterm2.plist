@@ -90196,11 +90196,11 @@
 			<key>Semantic History</key>
 			<dict>
 				<key>action</key>
-				<string>editor</string>
+				<string>coprocess</string>
 				<key>editor</key>
-				<string>com.jetbrains.WebStorm</string>
+				<string>com.github.atom</string>
 				<key>text</key>
-				<string></string>
+				<string> echo iterm-semantic-history \1</string>
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
