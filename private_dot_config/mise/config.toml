@@ -1,11 +1,6 @@
 [tools]
-node = "latest"
-npm = "latest"
-"npm:npx" = "latest"
+node = "12.6.1"
 
 [settings]
 experimental = true
 arch = "x86_64"
-
-[env]
-_.path = ['{{config_root}}/node_modules/.bin']
