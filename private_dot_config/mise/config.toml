@@ -1,0 +1,11 @@
+[tools]
+node = "latest"
+npm = "latest"
+"npm:npx" = "latest"
+
+[settings]
+experimental = true
+arch = "x86_64"
+
+[env]
+_.path = ['{{config_root}}/node_modules/.bin']
