@@ -1,3 +1,10 @@
+###
+# https://www.chezmoi.io/user-guide/include-files-from-elsewhere/
+# To refresh submdules (git pull) use --refresh-externals option (e.g. `chezmoi apply -R`)
+###
+
+# first time setups require init command:
+# `sh ~/.vim_runtime/install_awesome_vimrc.sh`
 [".vim_runtime"]
     type = "git-repo"
     url = "https://github.com/amix/vimrc"
