@@ -1,6 +1,7 @@
 ###
 # https://www.chezmoi.io/user-guide/include-files-from-elsewhere/
 # To refresh submdules (git pull) use --refresh-externals option (e.g. `chezmoi apply -R`)
+# Feature only git clone/pull, it does not git push
 ###
 
 # first time setups require init command:
@@ -9,3 +10,8 @@
     type = "git-repo"
     url = "https://github.com/amix/vimrc"
     refreshPeriod = "336h"
+
+# Personal Command History - 
+[".zsh_history_backups/drunk-zsh-history"]
+    type = "git-repo"
+    url = "git@github.com:MikeTayC/drunk-zsh-history.git"
