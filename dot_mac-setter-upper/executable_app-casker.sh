@@ -20,22 +20,23 @@ EOF
 
 # -- Command Line Options --
 # Command line arguments over interactive
-while getopts 'a:h' opt; do
-  case "$opt" in
-
-    a)
-      dev_apps="$OPTARG"
-      ;;
-
-    ?|h)
-    usage
-    exit
-      ;;
-  esac
-done
-shift "$(($OPTIND -1))"
+#while getopts 'a:h' opt; do
+#  case "$opt" in
+#
+#    a)
+#      dev_apps="$OPTARG"
+#      ;;
+#
+#    ?|h)
+#    usage
+#    exit
+#      ;;
+#  esac
+#done
+#shift "$(($OPTIND -1))"
 
 # -- MAIN --
+local dev_apps=(google-chrome firefox vivaldi iterm2 visual-studio-code webstorm grammarly-desktop pearcleaner)
 echo "Homebrew installing apps [${dev_apps[*]}]"
 
 # Homebrew is required
