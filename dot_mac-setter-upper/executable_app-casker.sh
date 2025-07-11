@@ -36,7 +36,7 @@ EOF
 #shift "$(($OPTIND -1))"
 
 # -- MAIN --
-local dev_apps=(google-chrome firefox vivaldi iterm2 visual-studio-code webstorm grammarly-desktop pearcleaner)
+dev_apps=(google-chrome firefox vivaldi iterm2 visual-studio-code webstorm grammarly-desktop pearcleaner)
 echo "Homebrew installing apps [${dev_apps[*]}]"
 
 # Homebrew is required
@@ -45,6 +45,6 @@ brew help > /dev/null || \
 
 # Install app (or not)
 for app in ${dev_apps[@]}; do
-  brew list --cask "$app" > /dev/null || \
-    (echo "brew install --cask ${app}"; brew install --cask "$app")
+    brew list --cask "$app"
+    brew install --cask "$app"
 done
