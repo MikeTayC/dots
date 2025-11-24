@@ -1,5 +1,6 @@
 [tools]
 node = "latest"
+"npm:oxlint" = "latest"
 
 [settings]
 experimental = true
