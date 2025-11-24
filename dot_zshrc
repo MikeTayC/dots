@@ -64,6 +64,7 @@ plugins=(
     zsh-eza
     history
     history-sync
+    kubectl
 )
 
 # User configuration
