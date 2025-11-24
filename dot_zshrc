@@ -97,4 +97,7 @@ export EDITOR=vim
 #zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 #zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 
+# export ~/.config/ for default tool settings instead of adding tool configs to $HOME directly
+export HOMECONFIG="$HOME/.config"
+
 #zprof
