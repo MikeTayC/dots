@@ -8,8 +8,11 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # aws-cli - moving aws config to .confing dir
-export AWS_CONFIG_FILE="$HOME/.config/.aws/config"
-export AWS_SHARED_CREDENTIALS_FILE="$HOME/.config/.aws/credentials"
+export AWS_CONFIG_FILE="$HOMECONFIG/.aws/config"
+export AWS_SHARED_CREDENTIALS_FILE="$HOMECONFIG/.aws/credentials"
+
+# minikube learning devops
+export MINIKUBE_HOME="$HOMECONFIG/.minikube"
 
 {{- if contains "/opt/homebrew/bin" .chezmoi.executable }}
 
