@@ -7,6 +7,9 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+# export ~/.config/ for default tool settings instead of adding tool configs to $HOME directly
+export HOMECONFIG="$HOME/.config"
+
 # aws-cli - moving aws config to .confing dir
 export AWS_CONFIG_FILE="$HOMECONFIG/.aws/config"
 export AWS_SHARED_CREDENTIALS_FILE="$HOMECONFIG/.aws/credentials"
