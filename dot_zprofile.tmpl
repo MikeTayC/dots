@@ -10,6 +10,8 @@ export LC_ALL=en_US.UTF-8
 # export ~/.config/ for default tool settings instead of adding tool configs to $HOME directly
 export HOMECONFIG="$HOME/.config"
 
+export NODE_EXTRA_CA_CERTS=$HOMECONFIG/.certs/Zscaler.cer
+
 # aws-cli - moving aws config to .confing dir
 export AWS_CONFIG_FILE="$HOMECONFIG/.aws/config"
 export AWS_SHARED_CREDENTIALS_FILE="$HOMECONFIG/.aws/credentials"
