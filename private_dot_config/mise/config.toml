@@ -2,7 +2,6 @@
 node = "latest"
 "npm:lodash-cli" = "latest"
 "npm:npm-check-updates" = "latest"
-"npm:oxlint" = "latest"
 pnpm = "latest"
 
 [settings]
