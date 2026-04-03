@@ -36,7 +36,7 @@ EOF
 #shift "$(($OPTIND -1))"
 
 # -- MAIN --
-dev_apps=(google-chrome firefox vivaldi iterm2 visual-studio-code webstorm grammarly-desktop pearcleaner)
+dev_apps=(google-chrome firefox vivaldi iterm2 visual-studio-code grammarly-desktop pearcleaner)
 echo "Homebrew installing apps [${dev_apps[*]}]"
 
 # Homebrew is required
