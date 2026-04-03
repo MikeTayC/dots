@@ -1,6 +1,5 @@
 [tools]
 node = "latest"
-"npm:lodash-cli" = "latest"
 "npm:npm-check-updates" = "latest"
 pnpm = "latest"
 
