@@ -18,6 +18,10 @@ export NODE_EXTRA_CA_CERTS=$HOMECONFIG/.certs/Zscaler.cer
 export AWS_CONFIG_FILE="$HOMECONFIG/.aws/config"
 export AWS_SHARED_CREDENTIALS_FILE="$HOMECONFIG/.aws/credentials"
 
+# aws-vault - stop using keychain
+export AWS_VAULT_BACKEND=file
+
+
 # docker config 
 #export DOCKER_CONFIG="$HOMECONFIG/.docker"
 
@@ -31,3 +35,13 @@ export MINIKUBE_HOME="$HOMECONFIG/.minikube"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 {{- end }}
+
+
+{{- if eq (index . "type") "work" }}
+# Added by Toolbox App
+export PATH="$PATH:/Users/michael.tay/Library/Application Support/JetBrains/Toolbox/scripts"
+{{- end }}
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+#source ~/.orbstack/shell/init.zsh 2>/dev/null || :
