@@ -4,14 +4,14 @@
 #
 
 # Set any zstyles you might use for configuration.
-[[ ! -f ${ZDOTDIR:-$HOME}/.zstyles ]] || source ${ZDOTDIR:-$HOME}/.zstyles
+[[ ! -f ${ZSH_CUSTOM:-$HOME}/.zstyles ]] || source ${ZSH_CUSTOM:-$HOME}/.zstyles
 
 # Create an amazing Zsh config using antidote plugins.
 source ${ANTIDIR:-~}/.antidote/antidote.zsh
 antidote load ${ANTIDIR:-$HOME}/.zsh_plugins.txt
 
 # Source anything in .zshrc.d.
-for _rc in ${ZDOTDIR:-$HOME}/conf.d/*.zsh; do
+for _rc in ${ZSH_CUSTOM:-$HOME}/conf.d/*.zsh; do
   # Ignore tilde files.
   if [[ $_rc:t != '~'* ]]; then
     source "$_rc"
