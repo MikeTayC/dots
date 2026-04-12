@@ -7,8 +7,8 @@
 [[ ! -f ${ZDOTDIR:-$HOME}/.zstyles ]] || source ${ZDOTDIR:-$HOME}/.zstyles
 
 # Create an amazing Zsh config using antidote plugins.
-source ${ANTIDIR:-$HOME}/.antidote/antidote.zsh
-antidote load
+source ${ANTIDIR:-~}/.antidote/antidote.zsh
+antidote load ${ANTIDIR:-$HOME}/.zsh_plugins.txt
 
 # Source anything in .zshrc.d.
 for _rc in ${ZDOTDIR:-$HOME}/conf.d/*.zsh; do
