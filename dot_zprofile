@@ -1,4 +1,2 @@
-# Armbian MOTD on login
-if [ -f /etc/update-motd.d/* ]; then
-  run-parts /etc/update-motd.d/
-fi
+# Armbian MOTD on loging
+[ -d /etc/update-motd.d ] && run-parts /etc/update-motd.d/
