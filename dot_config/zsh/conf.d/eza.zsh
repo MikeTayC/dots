@@ -39,7 +39,7 @@ export EZA_CONFIG_DIR="$HOME/.config/eza"
 #
 export DIR_COLOR_CONFIG="$HOME/.config/dir_colors"
 export DIR_COLOR_THEME="dircolors.trapdoor"
-alias dircolors="gdircolors"
+#alias dircolors="gdircolors"
 alias dirthemes="lt $DIR_COLOR_CONFIG"
 alias lta='lt --all'
 
