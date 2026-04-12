@@ -1,17 +1,23 @@
-# Set options
-setopt histignorealldups sharehistory
-bindkey -e
+#!/bin/zsh
+#
+# .zshrc - Zsh file loaded on interactive shell sessions.
+#
 
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
+# Set any zstyles you might use for configuration.
+[[ ! -f ${ZDOTDIR:-$HOME}/.zstyles ]] || source ${ZDOTDIR:-$HOME}/.zstyles
 
-# Completion
-autoload -Uz compinit
-compinit
+# Create an amazing Zsh config using antidote plugins.
+source ${ANTIDIR:-$HOME}/.antidote/antidote.zsh
+antidote load
 
-# Colors
-eval "$(dircolors -b)"
+# Source anything in .zshrc.d.
+for _rc in ${ZDOTDIR:-$HOME}/conf.d/*.zsh; do
+  # Ignore tilde files.
+  if [[ $_rc:t != '~'* ]]; then
+    source "$_rc"
+  fi
+done
+unset _rc
 
 # Starship (LAST LINE)
 eval "$(starship init zsh)"
