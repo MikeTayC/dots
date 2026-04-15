@@ -65,6 +65,7 @@ plugins=(
     history
     history-sync
     kubectl
+    terragrunt
 )
 
 # User configuration
