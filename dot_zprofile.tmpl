@@ -37,10 +37,11 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 {{- end }}
 
 
-#{{- if eq (index . "type") "work" }}
+{{- if eq (index . "type") "work" }}
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 # Added by Toolbox App
 #export PATH="$PATH:/Users/michael.tay/Library/Application Support/JetBrains/Toolbox/scripts"
-#{{- end }}
+{{- end }}
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
