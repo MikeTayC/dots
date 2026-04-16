@@ -9,24 +9,31 @@ export LC_ALL=en_US.UTF-8
 
 # export ~/.config/ for default tool settings instead of adding tool configs to $HOME directly
 export HOMECONFIG="$HOME/.config"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 {{- if eq (index . "type") "work" }}
-export NODE_EXTRA_CA_CERTS=$HOMECONFIG/.certs/Zscaler.cer
+export NODE_EXTRA_CA_CERTS=$XDG_CONFIG_HOME/.certs/Zscaler.cer
 {{- end }}
 
 # aws-cli - moving aws config to .confing dir
-export AWS_CONFIG_FILE="$HOMECONFIG/.aws/config"
-export AWS_SHARED_CREDENTIALS_FILE="$HOMECONFIG/.aws/credentials"
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/.aws/config"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/.aws/credentials"
 
 # aws-vault - stop using keychain
 export AWS_VAULT_BACKEND=keychain
 
+# helm - use ~/.config instead of default macos defaults
+export HELM_CONFIG_HOME="$XDG_CONFIG_HOME/helm"
+export HELM_CACHE_HOME="$XDG_CACHE_HOME/helm"
+export HELM_DATA_HOME="$XDG_DATA_HOME/helm"
 
+export HELM_REPOSITORY_CONFIG="$HELM_CONFIG_HOME/repositories.yaml"
+export HELM_REGISTRY_CONFIG="$HELM_CONFIG_HOME/registry/config.json"
 # docker config 
 #export DOCKER_CONFIG="$HOMECONFIG/.docker"
 
-# minikube learning devops
-export MINIKUBE_HOME="$HOMECONFIG/.minikube"
 
 {{- if contains "/opt/homebrew/bin" .chezmoi.executable }}
 # this line is required on the apple silicon based machines (eg M1, M2, M3, etc),
