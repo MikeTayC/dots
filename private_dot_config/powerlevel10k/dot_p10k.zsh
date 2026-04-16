@@ -45,4 +45,4 @@ POWERLEVEL9K_STATUS_CROSS=true
 
 # Show prompt segment "kubecontext" only when the command you are
 # typing invokes kubectl, helm, kubens or kubectx.
-POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx'
+POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm|kubens|kubectx|aws-vault'
