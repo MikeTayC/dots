@@ -54,9 +54,13 @@ fzf-history-widget() {
   selected=$(
     fc -rl 1 |
     sed 's/^[[:space:]]*[0-9]\+[[:space:]]\{1,\}//' |
+    sed 's/\\n/ /g' |
+    sed 's/[[:space:]]\+/ /g' |
+    sed 's/^ *//; s/ *$//' |
+    grep -v '^$' |
     fzf --no-sort --exact --query '' \
-        --preview 'echo {}' \
-        --height 70%
+      --preview 'echo {} | sed "s/--/\\n--/g" | fold -s -w $((COLUMNS - 4))' \
+      --height 70%
   )
 
   [[ -z "$selected" ]] && return
@@ -68,3 +72,4 @@ fzf-history-widget() {
 
 zle -N fzf-history-widget
 bindkey '^R' fzf-history-widget
+
