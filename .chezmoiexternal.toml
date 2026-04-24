@@ -3,7 +3,7 @@
 # To refresh submdules (git pull) use --refresh-externals option (e.g. `chezmoi apply -R`)
 # Feature only git clone/pull, it does not git push
 ###
-{{- if eq .zsh.ZSH_PLUGIN_MGR "ohmyzsh1" }}
+{{- if eq .zsh.ZSH_PLUGIN_MGR "ohmyzsh" }}
 [".oh-my-zsh"]
     type = "git-repo"
     url = "git@github.com:ohmyzsh/ohmyzsh.git"
