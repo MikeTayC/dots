@@ -1,0 +1,8 @@
+" -----------------------------
+" Filetype detection
+" -----------------------------
+augroup filetypedetect_custom
+  autocmd!
+  autocmd BufRead,BufNewFile *.zsh set filetype=zsh
+  autocmd BufRead,BufNewFile *.tmpl set filetype=zsh
+augroup END
