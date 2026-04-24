@@ -6,7 +6,7 @@ export ZSH={{- .zsh.ZSH }}
 
 export ZSH_THEME={{- .zsh.ZSH_THEME }}
 
-export ZSH_CUSTOM=$XDG_CONFIG_HOME/{{- .zsh.ZSH_CUSTOM }}
+export ZSH_CUSTOM=$HOME/{{- .zsh.ZSH_CUSTOM }}
 
 {{- if eq .zsh.ZSH_THEME "powerlevel10k/powerlevel10k" }}
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
