@@ -1,56 +1,32 @@
-# original PATH from very first oh-my-zsh set up - REWRITES PATH defined in /etc/paths as we don't need the majority of those
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin"
-
-# Mise - shim is top of path - https://mise.jdx.dev/getting-started.html#_2b-alternative-add-mise-shims-to-path
-#export PATH="$HOME/.local/share/mise/shims:$PATH"
-
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-# export ~/.config/ for default tool settings instead of adding tool configs to $HOME directly
-export HOMECONFIG="$HOME/.config"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
-
 {{- if eq (index . "type") "work" }}
-export NODE_EXTRA_CA_CERTS=$XDG_CONFIG_HOME/.certs/Zscaler.cer
+    export NODE_EXTRA_CA_CERTS=$XDG_CONFIG_HOME/.certs/Zscaler.cer
 {{- end }}
 
-# aws-cli - moving aws config to .confing dir
-export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/.aws/config"
-export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/.aws/credentials"
-
-# aws-vault - stop using keychain
-export AWS_VAULT_BACKEND=keychain
-
-# helm - use ~/.config instead of default macos defaults
-export HELM_CONFIG_HOME="$XDG_CONFIG_HOME/helm"
-export HELM_CACHE_HOME="$XDG_CACHE_HOME/helm"
-export HELM_DATA_HOME="$XDG_DATA_HOME/helm"
-
-export HELM_REPOSITORY_CONFIG="$HELM_CONFIG_HOME/repositories.yaml"
-export HELM_REGISTRY_CONFIG="$HELM_CONFIG_HOME/registry/config.json"
-export HELM_COLOR='always'
-# docker config 
-#export DOCKER_CONFIG="$HOMECONFIG/.docker"
-
-
-{{- if contains "/opt/homebrew/bin" .chezmoi.executable }}
-# this line is required on the apple silicon based machines (eg M1, M2, M3, etc),
-# where homebrew is instlled at /opt/homebrew/.
-# Intel mac homebrew lives at /urs/local/bin.
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ $tools := index .data "tools" }}
+{{- if index $tools "aws" }}
+    export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/.aws/config"
+    export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/.aws/credentials"
+{{- if eq .chezmoi.os "darwin" }}
+    export AWS_VAULT_BACKEND=keychain
 {{- end }}
 
+{{- if index $tools "helm" }}
+    export HELM_CONFIG_HOME="$XDG_CONFIG_HOME/helm"
+    export HELM_CACHE_HOME="$XDG_CACHE_HOME/helm"
+    export HELM_DATA_HOME="$XDG_DATA_HOME/helm"
 
-{{- if eq (index . "type") "work" }}
-export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
-# Added by Toolbox App
-#export PATH="$PATH:/Users/michael.tay/Library/Application Support/JetBrains/Toolbox/scripts"
+    export HELM_REPOSITORY_CONFIG="$HELM_CONFIG_HOME/repositories.yaml"
+    export HELM_REGISTRY_CONFIG="$HELM_CONFIG_HOME/registry/config.json"
+    export HELM_COLOR='always'
+{{- end }
+
+
+{{- if index $tools "brew" }}
+    {{- if contains "/opt/homebrew/bin" .chezmoi.executable }}
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    {{- end }}
+
+    {{- if eq (index . "type") "work" }}
+        export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+    {{- end }}
 {{- end }}
-
-# Added by OrbStack: command-line tools and integration
-# This won't be added again if you remove it.
-#source ~/.orbstack/shell/init.zsh 2>/dev/null || :
