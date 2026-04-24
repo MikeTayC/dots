@@ -29,7 +29,7 @@
 
 ["{{ .zsh.ZSH_CUSTOM }}/plugins/zsh-eza"]
     type = "git-repo"
-    url = "git@github.com:renovate-bot/z-shell-_-zsh-eza.git"
+    url = "git@github.com:z-shell/zsh-eza.git"
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
@@ -57,15 +57,15 @@
     stripComponents = 1
 {{- end }}
 
-
 # first time setups require init command:
 # `sh ~/.vim_runtime/install_awesome_vimrc.sh`
 [".vim_runtime"]
     type = "git-repo"
-    url = "https://github.com/amix/vimrc"
+    url = "git@github.com:amix/vimrc.git"
     refreshPeriod = "336h"
 
 # Personal Command History - 
 [".zsh_history_backups/drunk-zsh-history"]
     type = "git-repo"
     url = "git@github.com:MikeTayC/drunk-zsh-history.git"
+    refreshPeriod = "336h"
