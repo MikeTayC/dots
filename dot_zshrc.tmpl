@@ -1,11 +1,10 @@
 # zprof for profiling/benchmakring zsh load times and bottelnecks
 # zmodload zsh/zprof
-
+#
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 export ZSH={{- .zsh.ZSH }}
-
 export ZSH_THEME={{- .zsh.ZSH_THEME }}
-
 export ZSH_CUSTOM=$HOME/{{- .zsh.ZSH_CUSTOM }}
 
 {{- if eq .zsh.ZSH_THEME "powerlevel10k/powerlevel10k" }}
