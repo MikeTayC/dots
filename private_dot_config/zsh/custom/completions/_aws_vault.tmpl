@@ -1,4 +1,4 @@
-
+{{- if (index (default dict .tools) "aws") }}
 #compdef aws-vault
 
 _aws-vault() {
@@ -31,3 +31,4 @@ if [[ "$(basename -- ${(%):-%x})" != "_aws-vault" ]]; then
     compdef _aws-vault aws-vault
 fi
 
+{{- end }}
