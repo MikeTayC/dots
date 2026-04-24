@@ -1,8 +1,8 @@
- {{- if eq .chezmoi.os "darwin" }}
- export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin"
- {{- else if eq .chezmoi.os "linux" }}
- # linux path set here
- {{- end }}
+{{- if eq .chezmoi.os "darwin" }}
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin"
+{{- else if eq .chezmoi.os "linux" }}
+# linux path set here
+{{- end }}
 
 {{ $tools := default dict (index . "tools") }}
 {{- if index $tools "aws" }}
