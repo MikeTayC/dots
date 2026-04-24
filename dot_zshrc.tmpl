@@ -17,17 +17,11 @@ fi
 
 {{ if eq .zsh.ZSH_PLUGIN_MGR "ohmyzsh" }}
 plugins=(
-    before-plugins
-    zsh-eza
-    fzf-tab
-    gitfast
-    zsh-autosuggestions
-    fast-syntax-highlighting
-    history
-    history-sync
-    kubectl
-    terragrunt
+{{- range .zsh.OHMY_PLUGINS }}
+  {{ . }}
+{{- end }}
 )
+
 source $ZSH/oh-my-zsh.sh
 
 {{- end }}
