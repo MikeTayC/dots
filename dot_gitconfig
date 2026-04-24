@@ -140,3 +140,5 @@
 	added = green bold
 	changed = yellow bold
 	untracked = cyan
+[init]
+	defaultBranch = main
