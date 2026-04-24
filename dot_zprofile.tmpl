@@ -1,32 +1,26 @@
-{{- if eq (index . "type") "work" }}
-    export NODE_EXTRA_CA_CERTS=$XDG_CONFIG_HOME/.certs/Zscaler.cer
-{{- end }}
-
-{{ $tools := index .data "tools" }}
+{{ $tools := default dict (index . "tools") }}
 {{- if index $tools "aws" }}
-    export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/.aws/config"
-    export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/.aws/credentials"
-{{- if eq .chezmoi.os "darwin" }}
-    export AWS_VAULT_BACKEND=keychain
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/.aws/config"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/.aws/credentials"
 {{- end }}
-
+        
 {{- if index $tools "helm" }}
-    export HELM_CONFIG_HOME="$XDG_CONFIG_HOME/helm"
-    export HELM_CACHE_HOME="$XDG_CACHE_HOME/helm"
-    export HELM_DATA_HOME="$XDG_DATA_HOME/helm"
-
-    export HELM_REPOSITORY_CONFIG="$HELM_CONFIG_HOME/repositories.yaml"
-    export HELM_REGISTRY_CONFIG="$HELM_CONFIG_HOME/registry/config.json"
-    export HELM_COLOR='always'
-{{- end }
-
+export HELM_CONFIG_HOME="$XDG_CONFIG_HOME/helm"
+export HELM_CACHE_HOME="$XDG_CACHE_HOME/helm"
+export HELM_DATA_HOME="$XDG_DATA_HOME/helm"
+export HELM_REPOSITORY_CONFIG="$HELM_CONFIG_HOME/repositories.yaml"
+export HELM_REGISTRY_CONFIG="$HELM_CONFIG_HOME/registry/config.json"
+export HELM_COLOR='always'
+{{ end }}
 
 {{- if index $tools "brew" }}
     {{- if contains "/opt/homebrew/bin" .chezmoi.executable }}
-        eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
     {{- end }}
+{{- end }}
 
-    {{- if eq (index . "type") "work" }}
-        export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
-    {{- end }}
+{{- if eq (index . "type") "work" }}
+export NODE_EXTRA_CA_CERTS=$XDG_CONFIG_HOME/.certs/Zscaler.cer
+# Zscaler work around - put casks in user Apps
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 {{- end }}
