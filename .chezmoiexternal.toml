@@ -32,7 +32,6 @@
     url = "git@github.com:z-shell/zsh-eza.git"
     exact = true
     stripComponents = 1
-    refreshPeriod = "168h"
 
 ["{{ .zsh.ZSH_CUSTOM }}/plugins/zsh-autosuggestions"]
     type = "git-repo"
