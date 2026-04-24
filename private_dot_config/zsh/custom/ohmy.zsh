@@ -22,7 +22,7 @@ alias train="cd $SITES/devops-lc"
 ######
 alias vzsh='vim ~/.zshrc'
 alias czsh='cat ~/.zshrc'
-alias ohmy="cd $ZSH/custom/"
+alias ohmy="cd $ZSH_CUSTOM"
 alias vohmy="vim $ZSH/oh-my-zsh.sh"
 alias cohmy="cat $ZSH/oh-my-zsh.sh"
 alias cgit="cat $ZSH/custom/git.zsh"
