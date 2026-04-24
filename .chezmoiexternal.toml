@@ -3,6 +3,60 @@
 # To refresh submdules (git pull) use --refresh-externals option (e.g. `chezmoi apply -R`)
 # Feature only git clone/pull, it does not git push
 ###
+{{- if eq .zsh.ZSH_PLUGIN_MGR "ohmyzsh1" }}
+[".oh-my-zsh"]
+    type = "git-repo"
+    url = "git@github.com:ohmyzsh/ohmyzsh.git"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+{{- end }}
+
+
+["{{ .zsh.ZSH_CUSTOM }}/plugins/fast-syntax-highlighting"]
+    type = "git-repo"
+    url = "git@github.com:zdharma-continuum/fast-syntax-highlighting.git"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+
+["{{ .zsh.ZSH_CUSTOM }}/plugins/history-sync"]
+    type = "git-repo"
+    url = "git@github.com:wulfgarpro/history-sync.git"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+
+["{{ .zsh.ZSH_CUSTOM }}/plugins/zsh-eza"]
+    type = "git-repo"
+    url = "git@github.com:renovate-bot/z-shell-_-zsh-eza.git"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+
+["{{ .zsh.ZSH_CUSTOM }}/plugins/zsh-autosuggestions"]
+    type = "git-repo"
+    url = "git@github.com:zsh-users/zsh-autosuggestions.git"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+    
+["{{ .zsh.ZSH_CUSTOM }}/plugins/fzf-tab"]
+    type = "git-repo"
+    url = "git@github.com:Aloxaf/fzf-tab.git"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+
+# themes
+{{- if eq .zsh.ZSH_THEME "p10k" }}
+["{{ .zsh.ZSH_CUSTOM }}/themes/powerlevel10k"]
+    type = "git-repo"
+    url = "git@github.com:romkatv/powerlevel10k.git"
+    exact = true
+    stripComponents = 1
+{{- end }}
+
 
 # first time setups require init command:
 # `sh ~/.vim_runtime/install_awesome_vimrc.sh`
