@@ -3,7 +3,7 @@ export LANG=en_US.UTF-8
 
 {{- if eq .chezmoi.os "darwin" }}
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin"
-{{ else if eq .chezmoi.os "linux" }}
+{{- else if eq .chezmoi.os "linux" }}
 # linux path set here
 {{- end }}
 
