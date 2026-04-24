@@ -8,27 +8,13 @@ export ZSH_THEME={{- .zsh.ZSH_THEME }}
 
 export ZSH_CUSTOM={{- .zsh.ZSH_CUSTOM }}
 
-# PATH
-{{ if eq .chezmoi.os "darwin" }}
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-{{ else if eq .chezmoi.os "linux" }}
-# linux
-{{ else }}
-# other operating system
-{{ end }}
-
-# User configs
-DATE=$(date +'20%y-%m-%d')
-export EDITOR=vim
-
 {{- if eq .zsh.ZSH_THEME "powerlevel10k/powerlevel10k" }}
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
 [[ ! -f ~/.config/powerlevel10k/.p10k.zsh ]] || source ~/.config/powerlevel10k/.p10k.zsh
-{{- end }}
 
+{{- end }}
 
 {{- if eq .zsh.ZSH_PLUGIN_MGR "ohmyzsh" }}
 plugins=(
