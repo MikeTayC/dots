@@ -12,7 +12,8 @@ export ZSH_STATE_DIR="$XDG_STATE_HOME/zsh"
 export ZSH_COMPDUMP="$ZSH_CACHE_DIR/compdump/zcompdump-${USER// /-}-$ZSH_VERSION"
 
 HOMECONFIG=$XDG_CONFIG_HOME
-HISTFILE="$ZSH_STATE_DIR/.zsh_history"
+
+export HISTFILE="$ZSH_STATE_DIR/.zsh_history"
 
 {{- if (index (default dict .tools) "drunk_zsh_history") }}
 ZSH_HISTORY_FILE=$HISTFILE
