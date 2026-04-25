@@ -1,6 +1,8 @@
+{{- if (index (default dict .tools) "aws") }}
 [tools]
 node = "latest"
 pnpm = "latest"
 [settings]
 experimental = true
 #arch = "x86_64"
+{{- end }}
