@@ -67,7 +67,7 @@
 
 {{- if (index (default dict .tools) "drunk_zsh_history") }}
 # Personal Command History - 
-[".zsh_history_backups/drunk-zsh-history"]
+["{{ .xdg.CONFIG }}/drunk-zsh-history"]
     type = "git-repo"
     url = "git@github.com:MikeTayC/drunk-zsh-history.git"
     refreshPeriod = "336h"
