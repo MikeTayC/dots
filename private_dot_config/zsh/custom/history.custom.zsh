@@ -7,7 +7,7 @@
 
 # history range - usage: history -E -l $1 $2
 alias hsr='history -E -l'
-
+alias hsg='history | grep'
 setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
