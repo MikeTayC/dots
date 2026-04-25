@@ -2,15 +2,20 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR=vim
 
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
-export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/{{- .xdg.CONFIG }}}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/{{- .xdg.CONFIG }}}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/{{- .xdg.STATE }}}"
+export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/{{- .xdg.DATA }}}"
 
 export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
 export ZSH_STATE_DIR="$XDG_STATE_HOME/zsh"
 export ZSH_COMPDUMP="$ZSH_CACHE_DIR/compdump/zcompdump-${USER// /-}-$ZSH_VERSION"
 
-
-HISTFILE="$ZSH_STATE_DIR/.history"
 HOMECONFIG=$XDG_CONFIG_HOME
+HISTFILE="$ZSH_STATE_DIR/.zsh_history"
+{{- if has .zsh.OHMY_PLUGINS "history-sync" }}
+ZSH_HISTORY_FILE=$HISTFILE
+ZSH_HISTORY_PROJ=
+
+
+{{- end }}
