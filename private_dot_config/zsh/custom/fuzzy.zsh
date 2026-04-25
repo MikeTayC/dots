@@ -58,7 +58,7 @@ fzf-history-widget() {
     sed 's/[[:space:]]\+/ /g' |
     sed 's/^ *//; s/ *$//' |
     grep -v '^$' |
-    fzf --no-sort --exact --query '' \
+    fzf --style full --no-sort --exact --query '' \
       --preview 'echo {} | sed "s/--/\\n--/g" | fold -s -w $((COLUMNS - 4))' \
       --height 70%
   )
