@@ -10,8 +10,6 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
-{{- end }}
-
 
 ["{{ .zsh.ZSH_CUSTOM }}/plugins/fast-syntax-highlighting"]
     type = "git-repo"
@@ -47,6 +45,7 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
+{{- end }}
 
 # themes
 {{- if eq .zsh.ZSH_THEME "powerlevel10k/powerlevel10k" }}
@@ -57,15 +56,19 @@
     stripComponents = 1
 {{- end }}
 
+{{- if (index (default dict .tools) "vim_runtime") }}
 # first time setups require init command:
 # `sh ~/.vim_runtime/install_awesome_vimrc.sh`
 [".vim_runtime"]
     type = "git-repo"
     url = "git@github.com:amix/vimrc.git"
     refreshPeriod = "336h"
+{{- end }}
 
+{{- if (index (default dict .tools) "drunk_zsh_history") }}
 # Personal Command History - 
 [".zsh_history_backups/drunk-zsh-history"]
     type = "git-repo"
     url = "git@github.com:MikeTayC/drunk-zsh-history.git"
     refreshPeriod = "336h"
+{{- end }}
