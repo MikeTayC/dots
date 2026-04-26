@@ -1,3 +1,4 @@
+{{- if (index (default dict .tools) "vim_runtime") }}
 " -----------------------------
 " Filetype detection
 " -----------------------------
@@ -6,3 +7,4 @@ augroup filetypedetect_custom
  autocmd BufRead,BufNewFile *.zsh set filetype=zsh
  autocmd BufRead,BufNewFile *.tmpl set filetype=zsh
 augroup END
+{{- end }}
