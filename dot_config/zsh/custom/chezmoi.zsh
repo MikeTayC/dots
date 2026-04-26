@@ -1,8 +1,10 @@
+{{- if (index (default dict .tools) "chezmoi") }}
 alias che='chezmoi'
-alias checd='cd ~/.local/share/chezmoi/'
-alias chesrc='chezmoi source-path'
-alias checonfig='cd ~/.config/chezmoi'
+alias checd="cd $XDG_DATA_HOME/chezmoi/"
+alias checonfig="vim $XDG_CONFIG_HOME/chezmoi/chezmoi.toml"
+alias cheext="vim $XDG_DATA_HOME/chezmoi/.chezmoiexternal.toml"
 
+# auto detect chezmoi managed files when opening with vim
 vim() {
   if [ $# -eq 0 ]; then
     command vim
@@ -22,3 +24,4 @@ vim() {
 }
 
 alias vvim='command vim'
+{{- end }}
