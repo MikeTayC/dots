@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "darwin" -}}
 ###########
 # MacOS related CUSTOM commands and functions
 ###########
@@ -47,3 +48,4 @@ function iterm-semantic-history () {
         echo "$1 - value is probably not a directory or file"
     fi
 }
+{{- end }}
