@@ -1,0 +1,48 @@
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+export FZF_CTRL_R_OPTS="--tac"
+
+# fzf - fuzzy history
+# fh - search in your command history and execute selected command
+fh() {
+  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
+# fuzzy dir
+#:fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+
+fzf-history-widget() {
+  emulate -L zsh
+
+  local selected
+
+  selected=$(
+    fc -rl 1 |
+    sed 's/^[[:space:]]*[0-9]\+[[:space:]]\{1,\}//' |
+    sed 's/\\n/ /g' |
+    sed 's/[[:space:]]\+/ /g' |
+    sed 's/^ *//; s/ *$//' |
+    grep -v '^$' |
+    fzf --style full --no-sort --exact --query '' \
+      --preview 'echo {} | sed "s/--/\\n--/g" | fold -s -w $((COLUMNS - 4))' \
+      --height 70%
+  )
+
+  [[ -z "$selected" ]] && return
+
+  # IMPORTANT: no stripping needed anymore (sed already cleaned it)
+  LBUFFER="$selected"
+  CURSOR=${#LBUFFER}
+}
+
+zle -N fzf-history-widget
+bindkey '^R' fzf-history-widget
+
