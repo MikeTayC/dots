@@ -1,3 +1,4 @@
+{{- if (index (default dict .tools) "fzf") -}}
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
@@ -45,4 +46,4 @@ fzf-history-widget() {
 
 zle -N fzf-history-widget
 bindkey '^R' fzf-history-widget
-
+{{- end }}
