@@ -1,9 +1,5 @@
-alias vgit="vim $ZSH/custom/git.zsh"
-alias cgit="cat $ZSH/custom/git.zsh"
-#
-# Aliases
-# (sorted alphabetically)
-#
+alias vgit="vim $ZSH_CUSTOM/git.zsh"
+alias cgit="cat $ZSH_CUSTOM/git.zsh"
 
 alias g='git'
 
@@ -246,15 +242,3 @@ function git-remaster() {
     gl
   fi
 }
-
-function gittests() {
- local dev="develop"
- echo 'test'
- git fetch . develop:unstable/release-5.3.0 || echo 'else' && return 1
- #git checkout $dev || return 1
-
- echo 'did not reach'
-}
-
-
-
