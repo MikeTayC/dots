@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.os "darwin" -}}
+{{- if eq .chezmoi.os "linux" -}}
 ###########
 # MacOS related CUSTOM commands and functions
 ###########
@@ -48,4 +48,58 @@ function iterm-semantic-history () {
         echo "$1 - value is probably not a directory or file"
     fi
 }
+
+
+{{ if (index (default dict .tools) "cafe_countdown") }}
+###
+# Replacement script for caffiene/amphetamine
+# uses builtin shell command: caffeinate
+# And custom terminal countdown timer for UI: https://github.com/antonmedv/countdown
+# requires command 
+# $ brew install countdown
+#
+# usage:
+# $ cafe [n]
+# where [n] is time in hours
+#
+# caffeinate should run in background while countdown runs
+#
+# Notes:
+# https://aweirdimagination.net/2020/06/28/kill-child-jobs-on-script-exit/
+# https://git.aweirdimagination.net/perelman/kill-child-jobs/src/branch/ master/pkill-P-full-example. sh
+# From https://unix.stackexchange.com/a/240736
+###
+
+function cafe-kill() {
+    
+   echo 'check for countdown/caffeinate'
+   pgrep -l caffeinate
+   pgrep -l countdown
+   
+   echo "Killing caffeinate processes.."
+   pkill -f -l "caffeinate"
+
+   echo "Killing countdown processes.."
+   pkill -f -l "countdown"
+}
+
+function cafe() {
+  sec=$(($1*3600))
+  # background process started in subshell - hard to kill - gave up and used pkill (grep pid killer)
+  (caffeinate -disu -t $sec &)
+
+  if type "countdown" > /dev/null; then
+     countdown "$sec"s
+  fi
+
+  wait
+
+  echo "Cafe finished.. kill process pids"
+  echo "Killing caffeinate processes.."
+  pkill -f -l "caffeinate"
+  
+  echo "Killing countdown processes.."
+  pkill -f -l "countdown"
+}
+{{ end  }}
 {{- end }}
