@@ -7,11 +7,6 @@
 # aliases
 #####
 
-{{- if (index (default dict .tools) "eza") -}}
-# coreutils gdircolors alias - See eza.zsh for details
-alias dircolors="gdircolors"
-{{- end }}
-
 # Display graphics settings
 alias sys='system_profiler SPDisplaysDataType'
 alias showdir='defaults write com.apple.Finder AppleShowAllFiles true'
