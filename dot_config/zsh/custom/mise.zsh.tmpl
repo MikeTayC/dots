@@ -1,5 +1,23 @@
 {{- if (index (default dict .tools) "mise") -}}
 eval "$(mise activate zsh)"
 {{- end }}
+
+{{- if (index (default dict .tools) "npm") -}}
+# Tooling Aliases
+alias nrw='npm run watch'
+alias nr='npm run'
+alias nrlj='npm run lint:js'
+alias nrls='npm run lint:css'
+alias nrl='npm run lint'
+{{- end }}
+
+{{- if (index (default dict .tools) "pnpm") -}}
 alias p=pnpm
 alias pf="pnpm --filter"
+alias prw='pnpm run watch'
+alias pr='pnpm run'
+alias prlj='pnpm run lint:js'
+alias prls='pnpm run lint:css'
+alias prl='pnpm run lint'
+{{- end }}
+
