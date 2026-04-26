@@ -1,7 +1,4 @@
-####
-# BAiCi - Devops Terminal Configs
-####
-
+{{- if (index (default dict .tools) "aws") -}}
 ###
 # Set the default profile and login
 # $ aws-vault login <profile_name>
@@ -82,3 +79,4 @@ function kube-pod() {
     echo 'no profile_name (eg blm-qa)'
   fi 
 }
+{{- end }}
