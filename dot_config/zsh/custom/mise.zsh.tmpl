@@ -1,4 +1,5 @@
+{{- if (index (default dict .tools) "mise") -}}
 eval "$(mise activate zsh)"
-
+{{- end }}
 alias p=pnpm
 alias pf="pnpm --filter"
