@@ -1,3 +1,4 @@
+{{- if (index (default dict .tools) "chezmoi") -}}
 alias che='chezmoi'
 alias checd="cd $XDG_DATA_HOME/chezmoi/"
 alias checonfig="vim $XDG_CONFIG_HOME/chezmoi/chezmoi.toml"
@@ -23,3 +24,4 @@ vim() {
 }
 
 alias vvim='command vim'
+{{- end }}
