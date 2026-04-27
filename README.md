@@ -50,7 +50,7 @@
     terragrunt = true
     terraform = true
     cafe_countdown = true
-
+    iterm = true
 ```
 
 
