@@ -9,3 +9,10 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_FIND_NO_DUPS
+
+{{- if (index (default dict .tools) "drunk_zsh_history") }}
+ZSH_HISTORY_FILE=$HISTFILE
+ZSH_HISTORY_PROJ="$XDG_CONFIG_HOME/drunk_zsh_history"
+ZSH_HISTORY_FILE_ENC="$ZSH_HISTORY_PROJ/zsh_history"
+GIT_COMMIT_MSG="latest $(date)"
+{{- end }}
