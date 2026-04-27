@@ -1,4 +1,58 @@
 # zsh - new machine set up notes
+`~/.config/chezmoi/chezmoi.toml`
+```
+[git]
+    autoCommit = true
+    autoPush = true
+
+[data]
+    type = "work"
+    machine = "M4"
+
+[data.xdg]
+    CONFIG = '.config'
+    CACHE = '.cache'
+    STATE = '.local/state'
+    DATA = '.local/share'
+
+[data.zsh]
+    ZSH = "$HOME/.oh-my-zsh"
+    ZSH_PLUGIN_MGR = 'ohmyzsh'
+    ZSH_CUSTOM = ".config/zsh/custom"
+    ZSH_THEME = 'powerlevel10k/powerlevel10k'
+    OHMY_PLUGINS = [
+        "before-plugins",
+        "zsh-eza",
+        "fzf-tab",
+        "gitfast",
+        "zsh-autosuggestions",
+        "fast-syntax-highlighting",
+        "history",
+        "history-sync",
+        "kubectl",
+        "terragrunt",
+    ]
+
+[data.tools]
+    brew = true
+    mise = true
+    chezmoi = true
+    npm = true
+    pnpm = true
+    vim_runtime = true
+    eza = true
+    fzf = true
+    bat = true
+    zsh-autosuggestions = true
+    drunk_zsh_history = true
+    aws = true
+    helm = true
+    terragrunt = true
+    terraform = true
+    cafe_countdown = true
+
+```
+
 
 #### Install homebrew
 ```
