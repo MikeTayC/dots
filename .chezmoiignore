@@ -3,6 +3,7 @@ README.md
 # ignore symlinks
 syms/
 
-{{- if eq .chezmoi.os "darwin" }}
+{{- if ne .chezmoi.os "darwin" }}
+dot_iterm2
 private_Library/
 {{- end}}
