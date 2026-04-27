@@ -13,11 +13,14 @@ alias zsrc="source $HOME/.zshrc"
 
 alias cleanzsrc="rm $ZSH_COMPDUMP && zsrc"
 
-# find where an alias is defined - for functions use whence 'whence -v whencealias'
-function whencealias(){
-  if ! [ -z $1 ]; then
-    PS4='+%x:%I>' zsh -i -x -c '' |& grep -w $1
- fi
+function whencealias() {
+  if [[ -n $1 ]]; then
+    echo "=== zsh resolution ==="
+    whence -v $1
+
+    echo "\n=== definition trace ==="
+    PS4='+%x:%I>' zsh -i -x -c '' |& grep -w -- "$1"
+  fi
 }
 
 alias bench='/usr/bin/time zsh -i -c exit'
@@ -46,3 +49,33 @@ function mkcd() { mkdir -p "$@" && cd "$_"; }
 funciton vs () {
   open -na "Visual Studio Code.app" --args "$(pwd)/$1";
 }
+
+{{- if (index (default dict .tools) "iterm") }}
+function iterm-semantic-history () {
+    # Excluded values
+    local excluded=(
+    	.DS_Store
+	.CFUserTextEncoding
+	.zsh_history.backup
+	.zsh_history
+	img
+	jpg
+	dmg
+	zip
+  plist
+	.localized
+    )
+
+    if (($excluded[(Ie)$1:t] || $excluded[(Ie)$1:t:e])); then
+	return 1
+    fi
+
+    if [[ -d $1 ]]; then
+        cd $1 && ll
+    elif [[ -f $1 ]]; then
+        cat $1
+    else
+        echo "$1 - value is probably not a directory or file"
+    fi
+}
+{{- end }}
