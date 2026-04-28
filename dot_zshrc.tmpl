@@ -3,7 +3,7 @@
 #
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export ZSH={{- .zsh.ZSH }}
+export ZSH=$HOME/{{- .zsh.ZSH }}
 export ZSH_THEME={{- .zsh.ZSH_THEME }}
 export ZSH_CUSTOM=$HOME/{{- .zsh.ZSH_CUSTOM }}
 
@@ -17,7 +17,7 @@ fi
 
 {{- end }}
 
-{{ if eq .zsh.ZSH_PLUGIN_MGR "ohmyzsh" }}
+{{ if eq .zsh.ZSH ".oh-my-zsh" }}
 plugins=(
 {{- range .zsh.OHMY_PLUGINS }}
   {{ . }}
