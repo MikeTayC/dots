@@ -8,6 +8,9 @@ chetempx(){
     cat "$1" | chezmoi execute-template
 }
 
+chetempv(){
+    cat $(chezmoi source-path "$1")
+}
 # auto detect chezmoi managed files when opening with vim
 vim() {
   if [ $# -eq 0 ]; then
