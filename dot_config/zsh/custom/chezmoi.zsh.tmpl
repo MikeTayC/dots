@@ -4,6 +4,10 @@ alias checd="cd $XDG_DATA_HOME/chezmoi/"
 alias checonfig="vim $XDG_CONFIG_HOME/chezmoi/chezmoi.toml"
 alias cheext="vim $XDG_DATA_HOME/chezmoi/.chezmoiexternal.toml"
 
+chetempx(){
+    cat "$1" | chezmoi execute-template
+}
+
 # auto detect chezmoi managed files when opening with vim
 vim() {
   if [ $# -eq 0 ]; then
