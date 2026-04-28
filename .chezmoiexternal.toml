@@ -7,42 +7,37 @@
 [".oh-my-zsh"]
     type = "git-repo"
     url = "git@github.com:ohmyzsh/ohmyzsh.git"
-    exact = true
     stripComponents = 1
     refreshPeriod = "168h"
-
+    clone.args = ["--depth=1"]
+    
 ["{{ .zsh.ZSH_CUSTOM }}/plugins/fast-syntax-highlighting"]
     type = "git-repo"
     url = "git@github.com:zdharma-continuum/fast-syntax-highlighting.git"
-    exact = true
     stripComponents = 1
     refreshPeriod = "168h"
 
 ["{{ .zsh.ZSH_CUSTOM }}/plugins/history-sync"]
     type = "git-repo"
     url = "git@github.com:wulfgarpro/history-sync.git"
-    exact = true
     stripComponents = 1
     refreshPeriod = "168h"
 
 ["{{ .zsh.ZSH_CUSTOM }}/plugins/zsh-eza"]
     type = "git-repo"
     url = "git@github.com:z-shell/zsh-eza.git"
-    exact = true
     stripComponents = 1
     refreshPeriod = "168h"
 
 ["{{ .zsh.ZSH_CUSTOM }}/plugins/zsh-autosuggestions"]
     type = "git-repo"
     url = "git@github.com:zsh-users/zsh-autosuggestions.git"
-    exact = true
     stripComponents = 1
     refreshPeriod = "168h"
     
 ["{{ .zsh.ZSH_CUSTOM }}/plugins/fzf-tab"]
     type = "git-repo"
     url = "git@github.com:Aloxaf/fzf-tab.git"
-    exact = true
     stripComponents = 1
     refreshPeriod = "168h"
 {{- end }}
