@@ -31,7 +31,8 @@ function cafe-kill() {
 }
 
 function cafe() {
-  sec=$(($1*3600))
+    local hrs=${1:-8}
+  local sec=$(($hrs*3600))
   # background process started in subshell - hard to kill - gave up and used pkill (grep pid killer)
   (caffeinate -disu -t $sec &)
 
