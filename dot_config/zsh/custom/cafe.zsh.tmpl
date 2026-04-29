@@ -1,3 +1,4 @@
+{{- if (index (default dict .tools) "cafe_countdown") -}}
 ###
 # Replacement script for caffiene/amphetamine
 # uses builtin shell command: caffeinate
@@ -49,4 +50,4 @@ function cafe() {
   echo "Killing countdown processes.."
   pkill -f -l "countdown"
 }
-
+{{- end }}
