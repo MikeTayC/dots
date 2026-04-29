@@ -12,12 +12,14 @@ zstyle ':completion:*' menu no
 
 # show .dotfiles 
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
-zstyle ':completion:*' list-dirs-first true
-zstyle ':completion:*' hidden yes
+# Only for `cd`
+zstyle ':completion:*:*:cd:*:*' list-dirs-first true
+zstyle ':completion:*:*:cd:*:*' tag-order 'local-directories directory-stack path-directories'
+# Optional: explicitly set default for everything else
+zstyle ':completion:*' list-dirs-first false
 
 zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' file-patterns '*:globbed-files'
-
+zstyle ':completion:*' file-patterns '*:all-files'
 # disbable the possiblity prompts like "do you wish to see all 165 possibilities"
 zstyle ':completion:*' list-prompt   ''
 zstyle ':completion:*' select-prompt ''
@@ -39,7 +41,7 @@ zstyle ':fzf-tab:complete:export:*' fzf-preview 'echo ${(P)word}'
 zstyle ':fzf-tab:complete:unset:*' fzf-preview 'echo ${(P)word}'
 zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'dig $word'
 zstyle ':fzf-tab:complete:(vim|nvim|cat|bat|ccat):*' fzf-preview 'bat -n --color=always $realpath'
-
+zstyle ':fzf-tab:complete:(vim|nvim|cat|bat|ccat):*'
 
 # fzf replace up arrow history
 bindkey '^[[A' fzf-history-widget
