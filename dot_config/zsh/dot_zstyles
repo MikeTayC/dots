@@ -9,6 +9,16 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 # force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
 zstyle ':completion:*' menu no
+
+# show .dotfiles 
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}'
+zstyle ':completion:*' list-dirs-first true
+zstyle ':completion:*' hidden yes
+
+# disbable the possiblity prompts like "do you wish to see all 165 possibilities"
+zstyle ':completion:*' list-prompt   ''
+zstyle ':completion:*' select-prompt ''
+
 # preview directory's content with eza when completing cd
 #zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 # custom fzf flags
@@ -27,9 +37,6 @@ zstyle ':fzf-tab:complete:unset:*' fzf-preview 'echo ${(P)word}'
 zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'dig $word'
 zstyle ':fzf-tab:complete:(vim|nvim|cat|bat|ccat):*' fzf-preview 'bat -n --color=always $realpath'
 
-# disbable the possiblity prompts like "do you wish to see all 165 possibilities"
-zstyle ':completion:*' list-prompt   ''
-zstyle ':completion:*' select-prompt ''
 
 # fzf replace up arrow history
 bindkey '^[[A' fzf-history-widget
