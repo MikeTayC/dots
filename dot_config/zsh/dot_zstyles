@@ -41,7 +41,6 @@ zstyle ':fzf-tab:complete:export:*' fzf-preview 'echo ${(P)word}'
 zstyle ':fzf-tab:complete:unset:*' fzf-preview 'echo ${(P)word}'
 zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'dig $word'
 zstyle ':fzf-tab:complete:(vim|nvim|cat|bat|ccat):*' fzf-preview 'bat -n --color=always $realpath'
-zstyle ':fzf-tab:complete:(vim|nvim|cat|bat|ccat):*'
 
 # fzf replace up arrow history
 bindkey '^[[A' fzf-history-widget
