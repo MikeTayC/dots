@@ -44,7 +44,7 @@ zstyle ':fzf-tab:complete:*' fzf-preview '
 if [[ -z $realpath ]]; then
   echo $word
 elif [[ -d $realpath ]]; then
-  eza --tree --level=2 $eza_params $realpath | head -200
+  script -q /dev/null eza --tree --level=2 $eza_params $realpath | head -200
 else
   bat -n --color=always $realpath 2>/dev/null || cat $realpath
 fi
