@@ -36,11 +36,19 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
 ## Customizationls
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree $eza_params $realpath | head -200'
 zstyle ':fzf-tab:complete:export:*' fzf-preview 'echo ${(P)word}'
 zstyle ':fzf-tab:complete:unset:*' fzf-preview 'echo ${(P)word}'
 zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'dig $word'
-zstyle ':fzf-tab:complete:(vim|nvim|cat|bat|ccat):*' fzf-preview 'bat -n --color=always $realpath'
+
+zstyle ':fzf-tab:complete:*' fzf-preview '
+if [[ -z $realpath ]]; then
+  echo $word
+elif [[ -d $realpath ]]; then
+  eza --tree --level=2 $eza_params $realpath | head -200
+else
+  bat -n --color=always $realpath 2>/dev/null || cat $realpath
+fi
+'
 
 # fzf replace up arrow history
 bindkey '^[[A' fzf-history-widget

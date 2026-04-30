@@ -3,6 +3,8 @@
 # To refresh submdules (git pull) use --refresh-externals option (e.g. `chezmoi apply -R`)
 # Feature only git clone/pull, it does not git push
 ###
+{{- $custom := .zsh.ZSH_CUSTOM }}
+
 ["{{- .zsh.ZSH }}"]
     type = "git-repo"
     url = "{{- .zsh.ZSH_SRC }}"
@@ -11,46 +13,25 @@
     ["{{- .zsh.ZSH }}".clone]
         args = ["--depth=1"]
 
+{{- if eq .zsh.ZSH ".oh-my-zsh" }}
+# omz custom plugins need to be installed
+{{ range $key, $value := .plugins }}
+["{{ $custom }}/plugins/{{ $key }}"]
+    type = "git-repo"
+    url = "git@github.com:{{ $value }}.git"
+    stripComponents = 1
+    refreshPeriod = "168h"
+{{ end }}
 
-{{ if eq .zsh.ZSH ".oh-my-zsh" }}
-["{{ .zsh.ZSH_CUSTOM }}/plugins/fast-syntax-highlighting"]
-    type = "git-repo"
-    url = "git@github.com:zdharma-continuum/fast-syntax-highlighting.git"
-    stripComponents = 1
-    refreshPeriod = "168h"
-
-["{{ .zsh.ZSH_CUSTOM }}/plugins/history-sync"]
-    type = "git-repo"
-    url = "git@github.com:wulfgarpro/history-sync.git"
-    stripComponents = 1
-    refreshPeriod = "168h"
-
-["{{ .zsh.ZSH_CUSTOM }}/plugins/zsh-eza"]
-    type = "git-repo"
-    url = "git@github.com:z-shell/zsh-eza.git"
-    stripComponents = 1
-    refreshPeriod = "168h"
-
-["{{ .zsh.ZSH_CUSTOM }}/plugins/zsh-autosuggestions"]
-    type = "git-repo"
-    url = "git@github.com:zsh-users/zsh-autosuggestions.git"
-    stripComponents = 1
-    refreshPeriod = "168h"
-    
-["{{ .zsh.ZSH_CUSTOM }}/plugins/fzf-tab"]
-    type = "git-repo"
-    url = "git@github.com:Aloxaf/fzf-tab.git"
-    stripComponents = 1
-    refreshPeriod = "168h"
 {{- end }}
 
 # themes
 {{- if eq .zsh.ZSH_THEME "powerlevel10k/powerlevel10k" }}
-["{{ .zsh.ZSH_CUSTOM }}/themes/powerlevel10k"]
+["{{ $custom }}/themes/powerlevel10k"]
     type = "git-repo"
     url = "git@github.com:romkatv/powerlevel10k.git"
-    exact = true
     stripComponents = 1
+    refreshPeriod = "168h"
 {{- end }}
 
 {{- if (index (default dict .tools) "vim_runtime") }}
