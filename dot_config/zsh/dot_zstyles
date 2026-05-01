@@ -43,7 +43,9 @@ zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'dig $word'
 zstyle ':fzf-tab:complete:(cd|eza|ll|ls|la|l|t|tree|vim|vi|cat|bat|ccat):*' fzf-flags '--preview-window=right:70%:'
 zstyle ':fzf-tab:complete:*' fzf-preview '
 if [[ -n "$desc" ]]; then
-    echo "$service $desc"
+    echo "$desc"
+    echo "${words[@]}"
+    echo "$service"
 elif [[ -z $realpath ]]; then
   echo $word
 elif [[ -d $realpath ]]; then
