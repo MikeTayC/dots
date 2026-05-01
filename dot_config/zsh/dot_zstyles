@@ -43,19 +43,12 @@ zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'dig $word'
 zstyle ':fzf-tab:complete:(cd|eza|ll|ls|la|l|t|tree|vim|vi|cat|bat|ccat):*' fzf-flags '--preview-window=right:70%:'
 zstyle ':fzf-tab:complete:*' fzf-preview '
 if [[ -z $realpath ]]; then
-    if [[ -n "$word" && -n "$desc" ]]; then
-        cmd="$word"
-        rest="$desc"
-    elif [[ "$desc" == *" -- "* ]]; then
-        cmd="${desc%% -- *}"
+    if [[ "$desc" == *" -- "* ]]; then
         rest="${desc#* -- }"
+        print -P "%F{white}${rest}%f" | fold -s -w $FZF_PREVIEW_COLUMNS
     else
-        print -r -- "${word:-$desc}"
-        exit
+        print -r -- "$desc"
     fi
-
-    print -P "%F{cyan}${cmd}%f"
-    print -P "%F{white}${rest}%f" | fold -s -w $FZF_PREVIEW_COLUMNS
 elif [[ -d $realpath ]]; then
   script -q /dev/null eza --tree --level=2 $eza_params $realpath | head -200
 else
