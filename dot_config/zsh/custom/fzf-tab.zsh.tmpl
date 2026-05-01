@@ -27,7 +27,7 @@ fzf-history-widget() {
 
   selected=$(
     fc -rl 1 |
-    sed 's/^[[:space:]]*[0-9]\+[[:space:]]\{1,\}//' |
+    sed -E 's/^[[:space:]]*[0-9]+\*?[[:space:]]+//' |
     sed 's/\\n/ /g' |
     sed 's/[[:space:]]\+/ /g' |
     sed 's/^ *//; s/ *$//' |
