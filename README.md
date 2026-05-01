@@ -174,3 +174,6 @@ zsh plugin - history-sync requires GNU sed; before-plugins sed is replaced
 
 ### [countdown](https://formulae.brew.sh/formula/countdown)
 using for terminal replacement for amphetabmine
+
+###[glow](https://github.com/charmbracelet/glow)
+for README syntax in cli
