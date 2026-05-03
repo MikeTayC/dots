@@ -1,6 +1,3 @@
-[data]
-    profile = "{{ .chezmoi.os }}-{{ .chezmoi.hostname }}"
-
 [git]
     autoCommit = true
     autoPush = true
@@ -11,14 +8,16 @@
     STATE = '.local/state'
     DATA = '.local/share'
 
-{{- if eq .profile "darwin-BAC-USA500144ML" }}
-{{ template "darwin_darwin-BAC-USA500144ML" . }}
+{{- if eq .profile "darwin-BAC-USA500144ML"  }} 
+{{ template "darwin_darwin-BAC-USA500144ML" .  }} 
 
-{{- else if eq .profile "darwin-Michaels-MBP" }}
-{{ template "config_darwin-Michaels-MBP" . }}
+{{- else if eq .profile "darwin-Michaels-MBP"  }} 
+{{ template "config_darwin-Michaels-MBP" .  }} 
 
-{{- else if eq .profile "linux-rock-nasty" }}
-{{ template "config_linux-rock-nasty" . }}
+{{- else if eq .profile "linux-rock-nasty"  }} 
+{{ template "config_linux-rock-nasty" .  }} 
 
-{{- else -}}
-{{ template "config_defaults" . }}
+{{- else  }} 
+{{ template "config_defaults" .  }} 
+
+{{- end }}
