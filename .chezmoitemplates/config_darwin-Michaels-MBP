@@ -1,0 +1,42 @@
+[data.zsh]
+    ZSH = ".oh-my-zsh"
+    ZSH_SRC = "git@github.com:ohmyzsh/ohmyzsh.git"
+    ZSH_PLUGIN_MGR = 'ohmyzsh'
+    ZSH_CUSTOM = ".config/zsh/custom"
+    ZSH_THEME = 'powerlevel10k/powerlevel10k'
+    OHMY_PLUGINS = [
+      "before-plugins",
+      "zsh-eza",
+      "fzf-tab",
+      "gitfast",
+      "zsh-autosuggestions",
+      "fast-syntax-highlighting",
+      "history-sync",
+    ]   
+
+[data.plugins]
+    fast-syntax-highlighting = 'zdharma-continuum/fast-syntax-highlighting'
+    history-sync = 'wulfgarpro/history-sync'
+    zsh-eza = 'z-shell/zsh-eza'
+    zsh-autosuggestions = 'zsh-users/zsh-autosuggestions'
+    fzf-tab = 'Aloxaf/fzf-tab'
+
+[data.tools]
+    brew = true
+    mise = true
+    chezmoi = true
+    npm = true
+    pnpm = true
+    vim_runtime = true
+    eza = true
+    fzf = true
+    bat = true
+    zsh-autosuggestions = true
+    drunk_zsh_history = true
+    aws = false
+    helm = false
+    terragrunt = false
+    terraform = false
+    cafe_countdown = false
+    iterm = true
+
