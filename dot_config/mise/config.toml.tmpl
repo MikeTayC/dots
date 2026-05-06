@@ -4,5 +4,8 @@ node = "latest"
 pnpm = "latest"
 [settings]
 experimental = true
-#arch = "x86_64"
+{{- end }}
+
+{{- if eq (index . "machine") "M4" }}
+arch = "x86_64"
 {{- end }}
