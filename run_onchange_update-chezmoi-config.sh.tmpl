@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+
+echo "Regenerating chezmoi config..."
+
+chezmoi execute-template chezmoi_config_bootstrap.tmpl \
+  > "{{.chezmoi.configFile}}"
