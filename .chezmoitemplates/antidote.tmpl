@@ -1,13 +1,14 @@
 # effectively does what `antidote load` does (see https://antidote.sh/install)
+export ANTIDIR=${ANTIDIR:-$XDG_CONFIG_HOME/antidote}
 
 # Set the root name of the plugins files (.txt and .zsh) antidote will use.
-zsh_plugins=${ZDOTDIR:-$HOME}/.zsh_plugins
+zsh_plugins=$ANTIDIR/.zsh_plugins
 
 # Ensure the .zsh_plugins.txt file exists so you can add plugins.
 [[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
 
 # Lazy-load antidote from its functions directory.
-fpath=(/path/to/antidote/functions $fpath)
+fpath=($ZSH/functions $fpath)
 autoload -Uz antidote
 
 # Generate a new static file whenever .zsh_plugins.txt is updated.
@@ -17,3 +18,9 @@ fi
 
 # Source your static plugins file.
 source ${zsh_plugins}.zsh
+
+# load the custom stuff
+for config_file ("$ZSH_CUSTOM"/*.zsh(N)); do
+    source "$config_file"
+done
+unset config_file
