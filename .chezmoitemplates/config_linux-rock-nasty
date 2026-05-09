@@ -4,7 +4,7 @@
     ZSH_TEMPLATE=".chezmoitemplates/antidoterc.tmpl"
     ZSH_PLUGIN_MGR = 'antidote'
     ZSH_THEME = 'starship'
-    STARSHIP_THEME='gruvbox.toml'
+    STARSHIP_THEME='starship.toml'
     ANTI_PLUGINS = [
       "mattmc3/ez-compinit",
       "zsh-users/zsh-completions kind:fpath path:src",
