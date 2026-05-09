@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+# dependency tracking (forces rerun when templates change)
+{{ includeTemplate ".chezmoitemplates/config_defaults" . }}
+{{ includeTemplate (printf ".chezmoitemplates/config_%s-%s" .chezmoi.os .chezmoi.hostname) . }}
+
+chezmoi execute-template < \
+  "{{ .chezmoi.sourceDir }}/.chezmoi.toml.tmpl" \
+  > "{{ .chezmoi.configFile }}"
