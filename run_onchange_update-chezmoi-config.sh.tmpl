@@ -16,4 +16,4 @@ echo "Regenerating chezmoi config..."
 
 chezmoi execute-template < \
   "{{ .chezmoi.sourceDir }}/chezmoi_config_bootstrap.tmpl" \
-  > "${{ .chezmoi.configFile }}"
+  > "{{ .chezmoi.configFile }}"
