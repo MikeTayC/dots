@@ -1,7 +1,7 @@
 {{- $profile := printf "%s-%s" .chezmoi.os .chezmoi.hostname }}
- # Settings profile: {{ $profile }}
+# Settings profile: {{- $profile }}
 
- # default global configs
+# default global configs
 {{ includeTemplate ".chezmoitemplates/config_defaults" . }}
 
 # loading template config_{{ $profile }}
