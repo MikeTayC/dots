@@ -1,7 +1,7 @@
 {{- if (index (default dict .tools) "chezmoi") -}}
 alias che='chezmoi'
 alias checd="cd {{ .chezmoi.sourceDir }}"
-alias checonfig="vim {{ .chezmoi.sourceDir }}/{{ .chezmoi.os }}-{{ .chezmoi.hostname }}"
+alias checonfig="vim {{ .chezmoi.sourceDir }}/.chezmoitemplates/{{ .chezmoi.os }}-{{ .chezmoi.hostname }}"
 alias cheext="vim {{ .chezmoi.sourceDir }}/.chezmoiexternal.toml"
 
 chetempx(){
