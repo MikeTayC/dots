@@ -1,0 +1,7 @@
+{{- if eq .zsh.ZSH ".oh-my-zsh" }}
+
+{{- range .zsh.OHMY_PLUGINS }}
+{{ . }}
+{{- end }}
+
+{{- end }}
