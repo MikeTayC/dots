@@ -1,5 +1,5 @@
 {{- $profile := printf "config_%s-%s" .chezmoi.os .chezmoi.hostname }}
 
-{{ template "config_defaults" . }}
+{{ includeTemplate ".chezmoitemplates/config_defaults" . }}
 
 {{ includeTemplate (printf ".chezmoitemplates/%s" $profile) . }}
