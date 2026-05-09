@@ -1,24 +1,20 @@
-[data]
-    profile='{{ .chezmoi.os }}-{{ .chezmoi.hostname }}'
-[git]
-    autoCommit = true
-    autoPush = true
+# default global configs
+{{ template "config_defaults" .  }}
 
-[data.xdg]
-    CONFIG = '.config'
-    CACHE = '.cache'
-    STATE = '.local/state'
-    DATA = '.local/share'
 {{- if eq (index . "profile") "darwin-BAC-USA500144ML" }} 
+# work - M4 - darwin_darwin-BAC-USA500144ML
 {{ template "darwin_darwin-BAC-USA500144ML" .  }} 
 
 {{- else if eq (index . "profile") "darwin-Michaels-MBP"  }} 
+# personal M3 laptop 
 {{ template "config_darwin-Michaels-MBP" .  }} 
 
 {{- else if eq (index . "profile") "linux-rock-nasty"  }} 
+# PI NAS
 {{ template "config_linux-rock-nasty" .  }} 
 
 {{- else  }} 
-{{ template "config_defaults" .  }} 
+# just in case
+{{ template "config_fallback" .  }} 
 
 {{- end }}

@@ -2,7 +2,6 @@
     ZSH = ".antidote"
     ZSH_SRC = "git@github.com:mattmc3/antidote.git"
     ZSH_PLUGIN_MGR = 'antidote'
-    ZSH_CUSTOM = ".config/zsh/custom"
     ZSH_THEME = 'starship'
     ANTI_PLUGINS = [
       "mattmc3/ez-compinit",
