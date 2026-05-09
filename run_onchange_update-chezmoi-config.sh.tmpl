@@ -1,8 +1,14 @@
 #!/bin/sh
 set -eu
 
+# dependency fingerprint (forces rerun when templates change)
+{{ includeTemplate ".chezmoitemplates/config_defaults" . }}
+{{ includeTemplate ".chezmoitemplates/config_darwin-Michaels-MBP" . }}
+{{ includeTemplate ".chezmoitemplates/config_linux-rock-nasty" . }}
+{{ includeTemplate ".chezmoitemplates/config_fallback" . }}
+
 echo "Regenerating chezmoi config..."
 
 chezmoi execute-template < \
   "{{ .chezmoi.sourceDir }}/chezmoi_config_bootstrap.tmpl" \
-  > "$HOME/.config/chezmoi/chezmoi.toml"
+  > "${{ .chezmoi.configFile }}"
