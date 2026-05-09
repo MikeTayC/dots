@@ -7,7 +7,7 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/{{- .xdg.CACHE }}}"
 export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/{{- .xdg.STATE }}}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/{{- .xdg.DATA }}}"
 
-export ZDOTDIR="${ZDOTDIR:-$HOME/{{- .zsh.ZDOTDIR }}}"
+#export ZDOTDIR="${ZDOTDIR:-$HOME/{{- .zsh.ZDOTDIR }}}"
 export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
 export ZSH_STATE_DIR="$XDG_STATE_HOME/zsh"
 export ZSH_COMPDUMP="$ZSH_CACHE_DIR/compdump/zcompdump-${USER// /-}-$ZSH_VERSION"
