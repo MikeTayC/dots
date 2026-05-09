@@ -1,0 +1,10 @@
+{{- if eq .zsh.ZSH ".oh-my-zsh" -}}
+
+plugins=(
+{{- range .zsh.OHMY_PLUGINS }}
+    {{ . }}
+{{- end }}
+)
+source $ZSH/oh-my-zsh.sh
+
+{{- end }}

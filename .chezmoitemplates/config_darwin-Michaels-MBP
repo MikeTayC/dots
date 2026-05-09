@@ -1,7 +1,7 @@
 [data.zsh]
     ZSH = ".oh-my-zsh"
     ZSH_SRC = "git@github.com:ohmyzsh/ohmyzsh.git"
-    ZSH_TEMPLATE=".chezmoitemplates/ohmy.tmpl"
+    ZSH_TEMPLATE=".chezmoitemplates/ohmyrc.tmpl"
     ZSH_PLUGIN_MGR = 'ohmyzsh'
     ZSH_THEME = 'powerlevel10k/powerlevel10k'
     OHMY_PLUGINS = [

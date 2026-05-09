@@ -9,28 +9,26 @@ export ZSH_CUSTOM=$HOME/{{- .xdg.ZSH_CUSTOM }}
 
 HISTFILE=$ZSH_STATE_DIR/.zsh_history
 
+##
+# Prompt Theme: {{- .zsh.ZSH_THEME }}
+##
 {{ if eq .zsh.ZSH_THEME "powerlevel10k/powerlevel10k" }}
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 [[ ! -f ~/.config/powerlevel10k/.p10k.zsh ]] || source ~/.config/powerlevel10k/.p10k.zsh
 
+{{- else if eq .zsh.ZSH_THEME "starship" }}
+eval "$(starship init zsh)"
 {{- end }}
 
-{{ if eq .zsh.ZSH ".oh-my-zsh" }}
-plugins=(
-{{- range .zsh.OHMY_PLUGINS }}
-  {{ . }}
-{{- end }}
-)
-
-source $ZSH/oh-my-zsh.sh
-
-{{- else if eq .zsh.ZSH ".antidote" }}
-{{ template "antidote.tmpl" . }}
-{{- end }}
+##
+# ZSH Plugin Manger: {{- .zsh.ZSH_PLUGIN_MGR }}
+#  see {{- .zsh.ZSH_TEMPLATE }}
+##
+{{- $rc := .zsh.ZSH_TEMPLATE }}
+{{ includeTemplate $rc . }}
 
 # auto complete zstyles and customizations
 source $XDG_CONFIG_HOME/zsh/.zstyles
 
-#zprof

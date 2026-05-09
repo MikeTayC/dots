@@ -1,7 +1,7 @@
 [data.zsh]
     ZSH = ".antidote"
     ZSH_SRC = "git@github.com:mattmc3/antidote.git"
-    ZSH_TEMPLATE=".chezmoitemplates/antidote.tmpl"
+    ZSH_TEMPLATE=".chezmoitemplates/antidoterc.tmpl"
     ZSH_PLUGIN_MGR = 'antidote'
     ZSH_THEME = 'starship'
     ANTI_PLUGINS = [

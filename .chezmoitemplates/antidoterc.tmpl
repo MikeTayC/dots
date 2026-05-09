@@ -1,3 +1,4 @@
+{{- if eq .zsh.ZSH ".antidote" }}
 # effectively does what `antidote load` does (see https://antidote.sh/install)
 export ANTIDIR=${ANTIDIR:-$XDG_CONFIG_HOME/antidote}
 
@@ -24,3 +25,5 @@ for config_file ("$ZSH_CUSTOM"/*.zsh(N)); do
     source "$config_file"
 done
 unset config_file
+
+{{- end }}
