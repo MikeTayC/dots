@@ -35,4 +35,5 @@
     terraform = false
     cafe_countdown = false
     iterm = false
+    htop = true
 
