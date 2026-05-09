@@ -26,6 +26,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+{{- else if eq .zsh.ZSH ".antidote" }}
+{{ template "antidote.tmpl" . }}
 {{- end }}
 
 # auto complete zstyles and customizations
