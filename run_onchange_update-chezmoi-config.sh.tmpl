@@ -2,6 +2,7 @@
 set -eu
 
 echo "Regenerating chezmoi config..."
-chezmoi execute-template \
+
+chezmoi execute-template < \
   "{{ .chezmoi.sourceDir }}/chezmoi_config_bootstrap.tmpl" \
-  > "{{.chezmoi.configFile}}"
+  > "$HOME/.config/chezmoi/chezmoi.toml"
