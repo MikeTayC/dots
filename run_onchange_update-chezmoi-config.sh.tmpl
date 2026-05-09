@@ -2,8 +2,10 @@
 set -eu
 
 # dependency tracking (forces rerun when templates change)
+cat >/dev/null <<'EOF'
 {{ includeTemplate ".chezmoitemplates/config_defaults" . }}
 {{ includeTemplate (printf ".chezmoitemplates/config_%s-%s" .chezmoi.os .chezmoi.hostname) . }}
+EOF
 
 chezmoi execute-template < \
   "{{ .chezmoi.sourceDir }}/.chezmoi.toml.tmpl" \
