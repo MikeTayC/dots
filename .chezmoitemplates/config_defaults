@@ -1,6 +1,3 @@
- [data]
-     profile='{{ .chezmoi.os }}-{{ .chezmoi.hostname }}'
-
 [git]
     autoCommit = true
     autoPush = true

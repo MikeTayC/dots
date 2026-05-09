@@ -6,3 +6,4 @@
 {{- $profile := printf ".chezmoitemplates/config_%s-%s" .chezmoi.os .chezmoi.hostname }}
 # loading template {{ $profile }}
 {{ includeTemplate $profile . }}
+
