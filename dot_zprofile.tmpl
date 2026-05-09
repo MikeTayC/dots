@@ -5,6 +5,11 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin"
 {{- end }}
 
 {{ $tools := default dict (index . "tools") }}
+{{- if index $tools "htop" }}
+# Armbian MOTD on loging
+[ -d /etc/update-motd.d ] && run-parts /etc/update-motd.d/
+{{- end }}
+
 {{- if index $tools "aws" }}
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/.aws/config"
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/.aws/credentials"
