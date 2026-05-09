@@ -1,11 +1,16 @@
 #!/bin/sh
 set -eu
 
-# dependency fingerprint (forces rerun when templates change)
-{{ includeTemplate ".chezmoitemplates/config_defaults" . }}
+# Force chezmoi to track these template files as dependencies.
+# Their contents become part of the rendered script checksum.
+
+cat >/dev/null <<'EOF'
+{{ includeTemplate ".chezmoitemplates/config_darwin-BAC-USA500144ML" . }}
 {{ includeTemplate ".chezmoitemplates/config_darwin-Michaels-MBP" . }}
-{{ includeTemplate ".chezmoitemplates/config_linux-rock-nasty" . }}
+{{ includeTemplate ".chezmoitemplates/config_defaults" . }}
 {{ includeTemplate ".chezmoitemplates/config_fallback" . }}
+{{ includeTemplate ".chezmoitemplates/config_linux-rock-nasty" . }}
+EOF
 
 echo "Regenerating chezmoi config..."
 
