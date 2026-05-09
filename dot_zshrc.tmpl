@@ -19,6 +19,7 @@ fi
 [[ ! -f ~/.config/powerlevel10k/.p10k.zsh ]] || source ~/.config/powerlevel10k/.p10k.zsh
 
 {{- else if eq .zsh.ZSH_THEME "starship" }}
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
 eval "$(starship init zsh)"
 {{- end }}
 
