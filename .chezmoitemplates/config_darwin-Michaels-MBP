@@ -2,7 +2,6 @@
     ZSH = ".oh-my-zsh"
     ZSH_SRC = "git@github.com:ohmyzsh/ohmyzsh.git"
     ZSH_PLUGIN_MGR = 'ohmyzsh'
-    ZSH_CUSTOM = ".config/zsh/custom"
     ZSH_THEME = 'powerlevel10k/powerlevel10k'
     OHMY_PLUGINS = [
       "before-plugins",
