@@ -18,9 +18,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 [[ ! -f ~/.config/powerlevel10k/.p10k.zsh ]] || source ~/.config/powerlevel10k/.p10k.zsh
 
-{{- else if eq .zsh.ZSH_THEME "starship" }}
-export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/{{- zsh.STARSHIP_THEME }}
-eval "$(starship init zsh)"
 {{- end }}
 
 ##
@@ -33,3 +30,7 @@ eval "$(starship init zsh)"
 # auto complete zstyles and customizations
 source $XDG_CONFIG_HOME/zsh/.zstyles
 
+{{- if eq .zsh.ZSH_THEME "starship" }}
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/{{- zsh.STARSHIP_THEME }}
+eval "$(starship init zsh)"
+{{- end }}
