@@ -1,4 +1,3 @@
-# settings loaded for m3 personal laptop
 [data.zsh]
     ZSH = ".oh-my-zsh"
     ZSH_SRC = "git@github.com:ohmyzsh/ohmyzsh.git"
