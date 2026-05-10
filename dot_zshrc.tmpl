@@ -1,6 +1,8 @@
-# zprof for profiling/benchmakring zsh load times and bottelnecks
-# zmodload zsh/zprof
-
+###
+# Prompt Theme: {{- .zsh.ZSH_THEME }}
+# ZSH Plugin Manger: {{- .zsh.ZSH_PLUGIN_MGR }}
+# - see {{- .zsh.ZSH_TEMPLATE }}
+###
 {{- if eq .chezmoi.os "darwin" }}
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 {{- end }}
@@ -11,18 +13,12 @@ export ZSH_CUSTOM=$HOME/{{- .xdg.ZSH_CUSTOM }}
 
 HISTFILE=$ZSH_STATE_DIR/.zsh_history
 
-##
-# Prompt Theme: {{- .zsh.ZSH_THEME }}
-##
 {{ if eq .zsh.ZSH_THEME "powerlevel10k/powerlevel10k" }}
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 [[ ! -f ~/.config/powerlevel10k/.p10k.zsh ]] || source ~/.config/powerlevel10k/.p10k.zsh
 
-{{- else if eq .zsh.ZSH_THEME "starship" }}
-export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/{{- .zsh.STARSHIP_THEME }}
-eval "$(starship init zsh)"
 {{- end }}
 
 ##
@@ -35,3 +31,7 @@ eval "$(starship init zsh)"
 # auto complete zstyles and customizations
 source $XDG_CONFIG_HOME/zsh/.zstyles
 
+{{- if eq .zsh.ZSH_THEME "starship" }}
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/{{- .zsh.STARSHIP_THEME }}
+eval "$(starship init zsh)"
+{{- end }}
