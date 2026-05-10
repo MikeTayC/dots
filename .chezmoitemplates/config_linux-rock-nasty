@@ -14,7 +14,7 @@
       "mattmc3/zephyr path:plugins/directory",
       "z-shell/zsh-eza kind:defer",
       "zdharma-continuum/fast-syntax-highlighting kind:defer",
-      "zsh-users/zsh-autosuggestions kind:defer"
+      "zsh-users/zsh-autosuggestions"
     ]   
 
 [data.tools]

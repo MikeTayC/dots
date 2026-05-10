@@ -8,7 +8,11 @@ alias cohmy="cat $ZSH/oh-my-zsh.sh"
 # Re source Zsh
 alias zsrc='omz reload'
 {{- else }}
-alias zsrc="source $HOME/.zshrc"
+function zsrc() {
+	command rm -f $_comp_dumpfile $ZSH_COMPDUMP
+	local zsh="${ZSH_ARGZERO:-${functrace[-1]%:*}}"
+	[[ "$zsh" = -* || -o login ]] && exec -l "${zsh#-}" || exec "$zsh"
+}
 {{- end }}
 
 alias cleanzsrc="rm $ZSH_COMPDUMP && zsrc"
