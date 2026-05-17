@@ -5,6 +5,8 @@
 ###
 {{- if eq .chezmoi.os "darwin" }}
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+{{- else }}
+export PATH=$PATH:/sbin:/usr/sbin
 {{- end }}
 
 export ZSH=$HOME/{{- .zsh.ZSH }}
