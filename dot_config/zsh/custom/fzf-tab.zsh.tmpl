@@ -39,9 +39,11 @@ fzf-history-widget() {
 
   [[ -z "$selected" ]] && return
 
-  # IMPORTANT: no stripping needed anymore (sed already cleaned it)
-  LBUFFER="$selected"
-  CURSOR=${#LBUFFER}
+  BUFFER="$selected"
+  CURSOR=${#BUFFER}
+
+  zle reset-prompt
+  zle redisplay
 }
 
 zle -N fzf-history-widget
