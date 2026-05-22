@@ -1,0 +1,7 @@
+{{- if eq .zsh.ZSH ".antidote" }}
+
+{{- range .zsh.ANTI_PLUGINS }}
+{{ . }}
+{{- end }}
+
+{{- end }}

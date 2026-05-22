@@ -3,7 +3,7 @@
 # To refresh submdules (git pull) use --refresh-externals option (e.g. `chezmoi apply -R`)
 # Feature only git clone/pull, it does not git push
 ###
-{{- $custom := .zsh.ZSH_CUSTOM }}
+{{- $custom := .xdg.ZSH_CUSTOM }}
 
 ["{{- .zsh.ZSH }}"]
     type = "git-repo"

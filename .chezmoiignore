@@ -2,6 +2,7 @@ README.md
 
 # ignore symlinks
 syms/
+scripts/
 
 {{- if ne .chezmoi.os "darwin" }}
 dot_iterm2

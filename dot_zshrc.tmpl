@@ -1,11 +1,17 @@
-# zprof for profiling/benchmakring zsh load times and bottelnecks
-# zmodload zsh/zprof
-#
+###
+# Prompt Theme: {{- .zsh.ZSH_THEME }}
+# ZSH Plugin Manger: {{- .zsh.ZSH_PLUGIN_MGR }}
+# - see {{- .zsh.ZSH_TEMPLATE }}
+###
+{{- if eq .chezmoi.os "darwin" }}
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+{{- else }}
+export PATH=$PATH:/sbin:/usr/sbin
+{{- end }}
 
 export ZSH=$HOME/{{- .zsh.ZSH }}
 export ZSH_THEME={{- .zsh.ZSH_THEME }}
-export ZSH_CUSTOM=$HOME/{{- .zsh.ZSH_CUSTOM }}
+export ZSH_CUSTOM=$HOME/{{- .xdg.ZSH_CUSTOM }}
 
 HISTFILE=$ZSH_STATE_DIR/.zsh_history
 
@@ -17,18 +23,17 @@ fi
 
 {{- end }}
 
-{{ if eq .zsh.ZSH ".oh-my-zsh" }}
-plugins=(
-{{- range .zsh.OHMY_PLUGINS }}
-  {{ . }}
-{{- end }}
-)
-
-source $ZSH/oh-my-zsh.sh
-
-{{- end }}
+##
+# ZSH Plugin Manger: {{- .zsh.ZSH_PLUGIN_MGR }}
+#  see {{- .zsh.ZSH_TEMPLATE }}
+##
+{{- $rc := .zsh.ZSH_TEMPLATE }}
+{{ includeTemplate $rc . }}
 
 # auto complete zstyles and customizations
 source $XDG_CONFIG_HOME/zsh/.zstyles
 
-#zprof
+{{- if eq .zsh.ZSH_THEME "starship" }}
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/{{- .zsh.STARSHIP_THEME }}
+eval "$(starship init zsh)"
+{{- end }}

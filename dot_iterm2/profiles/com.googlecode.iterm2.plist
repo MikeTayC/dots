@@ -89069,6 +89069,8 @@
 	</dict>
 	<key>Default Bookmark Guid</key>
 	<string>1DE65662-9664-48A4-8DF3-2F746464F910</string>
+	<key>Default Browser Profile Guid</key>
+	<string>1DE65662-9664-48A4-8DF3-2F746464F910</string>
 	<key>EnableAPIServer</key>
 	<true/>
 	<key>EscapeShellCharsWithBackslash</key>
@@ -89187,6 +89189,8 @@
 	<key>HotkeyModifiers</key>
 	<integer>1179914</integer>
 	<key>IgnoreHardNewlinesInURLs</key>
+	<true/>
+	<key>NeverBlockSystemShutdown</key>
 	<true/>
 	<key>New Bookmarks</key>
 	<array>
@@ -89566,6 +89570,8 @@
 			<true/>
 			<key>HotKey Window Reopens On Activation</key>
 			<false/>
+			<key>Icon</key>
+			<integer>1</integer>
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
@@ -90184,7 +90190,7 @@
 			<key>Right Option Key Sends</key>
 			<integer>0</integer>
 			<key>Rows</key>
-			<integer>50</integer>
+			<integer>35</integer>
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>

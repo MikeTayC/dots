@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+
+echo 'Bootstrap profile: {{ (printf "%s-%s" .chezmoi.os .chezmoi.hostname) }}'
+
+# dependency tracking (forces rerun when templates change)
+cat >/dev/null <<'EOF'
+{{ includeTemplate ".chezmoitemplates/config_defaults" . }}
+{{ includeTemplate (printf ".chezmoitemplates/config_%s-%s" .chezmoi.os .chezmoi.hostname) . }}
+EOF
+
+echo 'Regenerating chezmoi config..'
+chezmoi execute-template < \
+  "{{ .chezmoi.sourceDir }}/.chezmoi.toml.tmpl" \
+  > "{{ .chezmoi.configFile }}"

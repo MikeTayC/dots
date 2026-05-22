@@ -1,23 +1,9 @@
-[git]
-    autoCommit = true
-    autoPush = true
+{{- $profile := printf "%s-%s" .chezmoi.os .chezmoi.hostname }}
+# Settings profile: {{- $profile }}
 
-[data.xdg]
-    CONFIG = '.config'
-    CACHE = '.cache'
-    STATE = '.local/state'
-    DATA = '.local/share'
+# default global configs
+{{ includeTemplate ".chezmoitemplates/config_defaults" . }}
 
-{{- if eq .profile "darwin-BAC-USA500144ML"  }} 
-{{ template "darwin_darwin-BAC-USA500144ML" .  }} 
+# loading template config_{{ $profile }}
+{{ includeTemplate (printf ".chezmoitemplates/config_%s" $profile) . }}
 
-{{- else if eq .profile "darwin-Michaels-MBP"  }} 
-{{ template "config_darwin-Michaels-MBP" .  }} 
-
-{{- else if eq .profile "linux-rock-nasty"  }} 
-{{ template "config_linux-rock-nasty" .  }} 
-
-{{- else  }} 
-{{ template "config_defaults" .  }} 
-
-{{- end }}

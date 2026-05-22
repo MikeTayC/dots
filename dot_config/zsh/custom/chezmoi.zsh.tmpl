@@ -1,8 +1,8 @@
 {{- if (index (default dict .tools) "chezmoi") -}}
 alias che='chezmoi'
-alias checd="cd $XDG_DATA_HOME/chezmoi/"
-alias checonfig="vim $XDG_CONFIG_HOME/chezmoi/chezmoi.toml"
-alias cheext="vim $XDG_DATA_HOME/chezmoi/.chezmoiexternal.toml"
+alias checd="cd {{ .chezmoi.sourceDir }}"
+alias checonfig="vim {{ .chezmoi.sourceDir }}/.chezmoitemplates/config_{{ .chezmoi.os }}-{{ .chezmoi.hostname }}"
+alias cheext="vim {{ .chezmoi.sourceDir }}/.chezmoiexternal.toml"
 
 chetempx(){
     cat "$1" | chezmoi execute-template
