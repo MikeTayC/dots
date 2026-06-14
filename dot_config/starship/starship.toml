@@ -181,5 +181,4 @@ vimcmd_visual_symbol = '[](bold fg:color_yellow)'
 [cpu_temp]
 command = "~/.config/starship/custom/cpu_temp"
 when = true
-shell = ["bash", "--noprofile", "--norc"]
 format = "$output "
