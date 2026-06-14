@@ -179,4 +179,4 @@ vimcmd_visual_symbol = '[](bold fg:color_yellow)'
 command = "~/.config/starship/custom/cpu_temp"
 when = true
 style = "fg:color_fg0 bg:color_bg1"
-format = "[ $output ]($style)"
+format = "[$output]"
