@@ -29,7 +29,7 @@ $time\
 $line_break$character"""
 
 right_format = """
-$custom.temp\
+$temperature\
 """
 
 
@@ -178,7 +178,7 @@ vimcmd_replace_one_symbol = '[](bold fg:color_purple)'
 vimcmd_replace_symbol = '[](bold fg:color_purple)'
 vimcmd_visual_symbol = '[](bold fg:color_yellow)'
 
-[custom.temp]
+[temperature]
 command = "~/.config/starship/custom/cpu_temp"
 when = true
 shell = ["bash", "--noprofile", "--norc"]
