@@ -29,7 +29,7 @@ $time\
 """
 
 right_format = """
-$custom.cpu_temp\
+${custom.cpu_temp}\
 $line_break$character"""
 
 palette = 'gruvbox_dark'
