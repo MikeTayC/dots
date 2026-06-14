@@ -28,8 +28,7 @@ $time\
 [ ](fg:color_bg1)\
 $line_break$character"""
 
-right_format = """$custom.cpu_temp"""
-
+right_format = "$custom.cpu_temp"
 
 palette = 'gruvbox_dark'
 
