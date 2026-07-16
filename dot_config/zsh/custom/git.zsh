@@ -86,43 +86,43 @@ function ohmy-submodules(){
 }
 
 # alias gcm='git commit -m'
-function gcm() { 
+function gcm() {
   if [[ "$(basename "$PWD")" == "lc"* ]]; then
+    local branch jira release
     branch=$(git rev-parse --abbrev-ref HEAD)
-    jira=$(printf $branch | sed -ne 's/.*\/\(LCR2-\([0-9]*\)\).*/\1/p')
 
-    if [[ -n "${jira/[ ]*\n/}" ]]; then
+    if [[ $branch =~ '(LCR2-[0-9]+)' ]]; then
+      jira=$match[1]
       git commit -m "$jira - $1" $2
+
+    elif [[ $branch == release/<->.<->.<-> ]]; then
+      release=${branch#release/}
+      git commit -m "Release $release - $1" $2
+
     else
-      # Checks if hotfix/release branch, to prefix it; otherwise no ticket
-      release=$(printf $branch | sed -ne 's/.*\/\(release-[0-9].[0-9].[0-9]\).*/\1/p')
-      if [[ -n "${release/[ ]*\n/}" ]]; then
-        git commit -m "$(print -r -- "${release//release-/Release }") - $1" $2
-      else
-        git commit -m "NO TICKET - $1" $2
-      fi
+      git commit -m "NO TICKET - $1" $2
     fi
+
   else
     git commit -m "$1" $2
   fi
 }
 
-function gcna() { git commit -m "NO TICKET - $1" }
-function gcu() { git checkout "release/$1" || git checkout "unstable/release-$1" }
-function gch() { git checkout "hotfix/release-$1" }
-function gmu() { git merge --no-edit "unstable/release-$1" }
-function gmh() { git merge --no-edit "hotfix/release-$1" }
+function gcu() { git checkout "release/$1" || git checkout "hotfix/$1" || git checkout "unstable/release-$1" }
+function gch() { git checkout "hotfix/$1" }
+function gmu() { git merge --no-edit "release/$1" }
+function gmh() { git merge --no-edit "hotfix/$1" }
 
 function gcbu() {
   git checkout develop
   gph || return 1
-  git checkout -b "unstable/release-$1" 
+  git checkout -b "release/$1" 
 }
 
 function gcbh(){ 
   git checkout develop
   gph || return 1
-  git checkout -b "hotfix/release-$1" 
+  git checkout -b "hotfix/$1" 
 }
 
 function gum() {
@@ -138,22 +138,24 @@ function gum() {
   gp
 }
 
-# update the unstable and hotfix branches with any remote origin changes
 function gsr() {
-  ## detach head for saftey --quiet to reduce commands
+  # update the release and hotfix branches with any remote origin changes
+  # detach head for saftey --quiet to reduce commands
   git checkout --quiet --detach HEAD
   
   # git fetch origin master:master develop:develop
   for arg
   do
-    if [[ -n $(git ls-remote --heads origin refs/heads/unstable/release-"$arg") ]]; then
-      printf '\033[32;1m%s\033[0m\n' "unstable/release-$arg exists - fetching"
-      git fetch origin unstable/release-"$arg":unstable/release-"$arg" || printf '\033[0;30m%s\033[0m\n' "Could not sync unstable/release-$arg"
-    elif [[ -n $(git ls-remote --heads origin refs/heads/hotfix/release-"$arg") ]]; then
-       printf '\033[34;1m%s\033[0m\n' "hotfix/release-$arg exists - fetching"
-       git fetch origin hotfix/release-"$arg":hotfix/release-"$arg" || printf '\033[0;30m%s\033[0m\n' "Could not sync hotfix/release-$arg"
+    local unstable="release/$arg"
+    local hotfix="hotfix/$arg"
+    if [[ -n $(git ls-remote --heads origin refs/heads/"$unstable") ]]; then 
+      printf '\033[32;1m%s\033[0m\n' "release/$arg exists - fetching"
+      git fetch origin "$unstable":"$unstable" || printf '\033[0;30m%s\033[0m\n' "Could not sync $unstable"
+    elif [[ -n $(git ls-remote --heads origin refs/heads/"$hotfix") ]]; then
+       printf '\033[34;1m%s\033[0m\n' "$hotfix exists - fetching"
+       git fetch origin "$hotfix":"$hotfix" || printf '\033[0;30m%s\033[0m\n' "Could not sync $hotfix"
     else
-      printf '\033[0;30m%s\033[0m\n' "There are no unstable/hotfix with version: $arg"
+      printf '\033[0;30m%s\033[0m\n' "There are no release/hotfix with version: $arg"
     fi
 
   done
@@ -161,10 +163,9 @@ function gsr() {
   git checkout --quiet -
 }
 
-# update unstabe/hotfix and merge latest from develop 
 function gsr-develop() {
+   # updates release/hotfix branch and merge latest from develop
    local dev="develop"
-
    printf '\033[32;1m%s\033[0m\n' "Merging $dev via remote origin fetch (fast forward)" 
 
    ## detach head for saftey --quiet to reduce commands
@@ -175,8 +176,8 @@ function gsr-develop() {
 
    for arg
    do
-     local unstable="unstable/release-$arg"
-     local hotfix="hotfix/release-$arg"
+     local unstable="release/$arg"
+     local hotfix="hotfix/$arg"
 
      if [[ -n $(git ls-remote --heads origin refs/heads/"$unstable") ]]; then
        git checkout "$unstable" || return 1
@@ -201,7 +202,7 @@ function gsr-develop() {
        printf '\033[35;1m%s\033[0m\n' "Pushing $hotfix to origin.."
        git push origin "$hotfix"
     else
-      printf '\033[0;30m%s\033[0m\n' "There are no unstable/hotfix with version: $arg"
+      printf '\033[0;30m%s\033[0m\n' "There are no release/hotfix with version: $arg"
     fi
 
     git checkout --quiet -
