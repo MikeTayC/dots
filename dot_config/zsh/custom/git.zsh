@@ -108,7 +108,7 @@ function gcm() {
 }
 
 function gcna() { git commit -m "NO TICKET - $1" }
-function gcu() { git checkout "unstable/release-$1" }
+function gcu() { git checkout "release/$1" || git checkout "unstable/release-$1" }
 function gch() { git checkout "hotfix/release-$1" }
 function gmu() { git merge --no-edit "unstable/release-$1" }
 function gmh() { git merge --no-edit "hotfix/release-$1" }
