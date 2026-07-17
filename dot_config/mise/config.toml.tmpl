@@ -5,7 +5,3 @@ pnpm = "latest"
 [settings]
 experimental = true
 {{- end }}
-
-{{- if eq .chezmoi.os "darwin" }}
-arch = "x86_64"
-{{- end }}
