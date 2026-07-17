@@ -6,6 +6,6 @@ pnpm = "latest"
 experimental = true
 {{- end }}
 
-{{- if eq (index . "machine") "M4" }}
+{{- if eq .chezmoi.os "darwin" }}
 arch = "x86_64"
 {{- end }}
