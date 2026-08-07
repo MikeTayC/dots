@@ -10,3 +10,24 @@ alias lc2="cd $SITES/lc2"
 alias lc3="cd $SITES/lc3"
 alias train="cd $SITES/devops-lc"
 alias emea="cd $SITES/lc-emea"
+
+# blm
+BLM="$SITES/blm"
+alias blm="cd $BLM"
+
+function blu() {
+    local command="$1"
+
+    case "$command" in
+        i|inf|infra)
+            cd "$BLM/infra"
+            ;;
+        LOL)
+            echo "LOL"
+            ;;
+        *)
+            cd "$BLM/$1"
+            ;;
+    esac
+}
+
