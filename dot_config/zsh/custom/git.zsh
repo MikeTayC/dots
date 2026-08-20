@@ -244,3 +244,39 @@ function git-remaster() {
     gl
   fi
 }
+
+rm-tag() {
+  if [ -z "$1" ]; then
+    echo "Usage: rm-tag <tag-name> [remote-name]"
+    return 1
+  fi
+
+  local TAG=$1
+  local REMOTE=${2:-origin}
+
+  # 1. Delete locally if it exists
+  if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+    if git tag -d "$TAG"; then
+      echo "✅ Deleted local tag: $TAG"
+    else
+      echo "❌ Failed to delete local tag: $TAG"
+      return 1
+    fi
+  else
+    echo "ℹ️ Local tag '$TAG' does not exist."
+  fi
+
+  # 2. Check and delete remotely
+  echo "🔍 Checking remote '$REMOTE' for tag '$TAG'..."
+  if git ls-remote --tags "$REMOTE" "refs/tags/$TAG" | grep -q "$TAG"; then
+    if git push "$REMOTE" --delete "$TAG"; then
+      echo "✅ Deleted remote tag: $TAG from $REMOTE"
+    else
+      echo "❌ Failed to delete remote tag: $TAG"
+      return 1
+    fi
+  else
+    echo "ℹ️ Remote tag '$TAG' does not exist on '$REMOTE'."
+  fi
+}
+
