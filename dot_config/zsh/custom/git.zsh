@@ -108,6 +108,7 @@ function gcm() {
   fi
 }
 
+function main() { git checkout main || git checkout master }
 function gcu() { git checkout "release/$1" || git checkout "hotfix/$1" || git checkout "unstable/release-$1" }
 function gch() { git checkout "hotfix/$1" }
 function gmu() { git merge --no-edit "release/$1" }
