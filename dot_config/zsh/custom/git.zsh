@@ -250,7 +250,7 @@ rm-tag() {
     echo "Usage: rm-tag <tag-name> [remote-name (default: origin)]"
     echo ""
     echo "Examples:"
-    echo "  rm-tag v1.0.0           # Deletes 'v1.0.0' locally and from default 'origin'"
+    echo "  rm-tag v1.0.0            # Deletes 'v1.0.0' locally and from default 'origin'"
     echo "  rm-tag staging upstream  # Deletes 'staging' locally and from custom 'upstream'"
     return 1
   fi
