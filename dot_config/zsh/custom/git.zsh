@@ -87,27 +87,29 @@ function ohmy-submodules(){
 
 # alias gcm='git commit -m'
 function gcm() {
-  if [[ "$(basename "$PWD")" == "lc"* ]]; then
+  if [[ "$(basename "$PWD")" == lc* ]]; then
     local branch jira release
+
     branch=$(git rev-parse --abbrev-ref HEAD)
 
-    if [[ $branch =~ '(LCR2-[0-9]+)' ]]; then
-      jira=$match[1]
-      git commit -m "$jira - $1" $2
+    if [[ $branch =~ ([A-Z][A-Z0-9]+-[0-9]+) ]]; then
+      jira="${BASH_REMATCH[1]}"
+      git commit -m "$jira - $1" "${@:2}"
 
-    elif [[ $branch == release/<->.<->.<-> ]]; then
-      release=${branch#release/}
-      git commit -m "Release $release - $1" $2
+    elif [[ $branch =~ ^release/[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+      release="${branch#release/}"
+      git commit -m "Release $release - $1" "${@:2}"
 
     else
-      git commit -m "NO TICKET - $1" $2
+      git commit -m "NO TICKET - $1" "${@:2}"
     fi
 
   else
-    git commit -m "$1" $2
+    git commit -m "$1" "${@:2}"
   fi
 }
 
+function main() { git checkout main || git checkout master }
 function gcu() { git checkout "release/$1" || git checkout "hotfix/$1" || git checkout "unstable/release-$1" }
 function gch() { git checkout "hotfix/$1" }
 function gmu() { git merge --no-edit "release/$1" }
@@ -243,3 +245,43 @@ function git-remaster() {
     gl
   fi
 }
+
+rm-tag() {
+  if [ -z "$1" ]; then
+    echo "Usage: rm-tag <tag-name> [remote-name (default: origin)]"
+    echo ""
+    echo "Examples:"
+    echo "  rm-tag v1.0.0            # Deletes 'v1.0.0' locally and from default 'origin'"
+    echo "  rm-tag staging upstream  # Deletes 'staging' locally and from custom 'upstream'"
+    return 1
+  fi
+
+  local TAG=$1
+  local REMOTE=${2:-origin}
+
+  # 1. Delete locally if it exists
+  if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+    if git tag -d "$TAG"; then
+      echo "✅ Deleted local tag: $TAG"
+    else
+      echo "❌ Failed to delete local tag: $TAG"
+      return 1
+    fi
+  else
+    echo "ℹ️ Local tag '$TAG' does not exist."
+  fi
+
+  # 2. Check and delete remotely
+  echo "🔍 Checking remote '$REMOTE' for tag '$TAG'..."
+  if git ls-remote --tags "$REMOTE" "refs/tags/$TAG" | grep -q "$TAG"; then
+    if git push "$REMOTE" --delete "$TAG"; then
+      echo "✅ Deleted remote tag: $TAG from $REMOTE"
+    else
+      echo "❌ Failed to delete remote tag: $TAG"
+      return 1
+    fi
+  else
+    echo "ℹ️ Remote tag '$TAG' does not exist on '$REMOTE'."
+  fi
+}
+
