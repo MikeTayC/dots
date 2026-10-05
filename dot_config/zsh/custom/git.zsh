@@ -85,28 +85,28 @@ function ohmy-submodules(){
   git submodule update --recursive --remote
 }
 
-# alias gcm='git commit -m'
-function gcm() {
-  if [[ "$(basename "$PWD")" == lc* ]]; then
+gcm() {
+    setopt localoptions rematchpcre
+
     local branch jira release
 
     branch=$(git rev-parse --abbrev-ref HEAD)
 
-    if [[ $branch =~ ([A-Z][A-Z0-9]+-[0-9]+) ]]; then
-      jira="${BASH_REMATCH[1]}"
-      git commit -m "$jira - $1" "${@:2}"
+    if [[ $(basename "$PWD") == lc* ]]; then
+        if [[ $branch =~ ([A-Z][A-Z0-9]+-[0-9]+) ]]; then
+            jira="${match[1]}"
+            git commit -m "$jira - $1" "${@:2}"
 
-    elif [[ $branch =~ ^release/[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-      release="${branch#release/}"
-      git commit -m "Release $release - $1" "${@:2}"
+        elif [[ $branch =~ '^release/[0-9]+\.[0-9]+\.[0-9]+$' ]]; then
+            release="${branch#release/}"
+            git commit -m "Release $release - $1" "${@:2}"
 
+        else
+            git commit -m "NO TICKET - $1" "${@:2}"
+        fi
     else
-      git commit -m "NO TICKET - $1" "${@:2}"
+        git commit -m "$1" "${@:2}"
     fi
-
-  else
-    git commit -m "$1" "${@:2}"
-  fi
 }
 
 function main() { git checkout main || git checkout master }
